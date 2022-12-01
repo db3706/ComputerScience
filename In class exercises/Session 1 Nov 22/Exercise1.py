@@ -11,4 +11,4 @@ grand_total = initial_total + total_tax + total_tip
 # Print the desired values
 print("Total tax is: $" + str(total_tax))
 print("Total tip is: $" + str(total_tip))
-print("Grand_total is: $" + str(grand_total))
+print("Grand total is: $" + str(grand_total))
