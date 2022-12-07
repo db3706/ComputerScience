@@ -10,6 +10,8 @@ def shipping_cost(items):
 
 user_input = int(input("Enter a positive number of items: "))
 while user_input < 0:
-    print(int(input("Reenter a POSITIVE number: ")))
+    user_input = (int(input("Reenter a POSITIVE number: ")))
+    print(user_input)
 else:
-    print("Total shipping charge is: $" + str(round(shipping_cost(user_input),2)))
+    user_input = round(shipping_cost(user_input),2)
+    print("Total shipping charge is: $",user_input)
