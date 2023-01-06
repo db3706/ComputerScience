@@ -7,20 +7,19 @@ num2 = int(input("Enter another number: "))
 
 
 
-def add(added_num):
-    num1 + num2 == added_num
+def add():
+    added_num = num1 + num2
     return added_num
 
-def sub(subtracted_num):
-    num1 - num2 == subtracted_num
+def sub():
+    subtracted_num = num1 - num2
     return subtracted_num
 
-def power(power_num):
-    num1 ** num2 == power_num
+def power():
+    power_num = num1 ** num2
     return power_num
 
-def fchoice():
-    if function == "+":
-        return add()
-print(fchoice())
 
+def choice():
+    if function == "+":
+        
