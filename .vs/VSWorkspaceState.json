@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Assignments",
     "\\In class exercises",
-    "\\In class exercises\\Session 2 Nov 29",
     "\\In class exercises\\Session 3 Dec 5",
     "\\In class exercises\\Session 4 Dec 7",
     "\\References",
@@ -11,6 +11,6 @@
     "\\Review Answers\\Review 5",
     "\\Review Answers\\Review 8"
   ],
-  "SelectedNode": "\\In class exercises\\Session 4 Dec 7\\Exercise10.py",
+  "SelectedNode": "\\Assignments\\Recursion.py",
   "PreviewInSolutionExplorer": false
 }
