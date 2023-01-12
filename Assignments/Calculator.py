@@ -5,10 +5,10 @@ def finalchoice():
     print(" ")
     print("Would you like to continue using the calculator?")
     print("Type 1 for Yes | 2 for No")
-    num1 = float(input("Enter 1 or 2 here: "))
-    if num1 == 1:
+    num1 = (input("Enter 1 or 2 here: "))
+    if num1 == "1":
         op_choice()
-    elif num1 == 2:
+    elif num1 == "2":
         exit()
     else:
         print("1 or 2 was not inputted. Please choose again.")
@@ -35,14 +35,17 @@ def isfloat(num):
 def add():
     print("_ + _")
     num1 = input("Enter a number: ")
+# If the user input is an integer, proceed with the function
     if is_integer(num1) == True:
         print(num1,"+ _")
+# If not, print an error message and call the function to restart the script
     else:
         print("--Invalid input value. Please choose an integer.")
         add()
     num2 = input("Enter another number: ")
     if is_integer(num2) == True:
         print(num1,"+",num2,"=",int(num1) + int(num2))
+# After a successful calculation, give the user the choice of continuing or not
         finalchoice()
     else:
         print("--Invalid input value. Please choose an integer.")
@@ -89,8 +92,8 @@ def divide():
         print("--Invalid input value. Please choose an integer.")
         divide()
     num2 = input("Enter another number: ")
-    if num2 == 0:
-        print("--Bad input, cannot divide by 0. Please choose an integer")
+    if float(num2) == 0:
+        print("--Bad input, cannot divide by 0. Please choose an integer besides 0")
         divide()     
     elif is_integer(num2) == True:
         print(num1,"/",num2,"=",int(num1) / int(num2))
@@ -108,6 +111,9 @@ def squareroot():
     elif float(num1) >= 0:
        print("√",num1,"=",float(num1) ** 0.5)
        finalchoice()
+    elif float(num1) < 0:
+        print("--Invalid input value. Cannot square root negative number.")
+        squareroot()
     else:
        print("--Cannot squareroot negative.")
        squareroot()
@@ -137,9 +143,11 @@ def radical():
         print("--Invalid input value. Please choose an integer.")
         radical()
     num2 = input("Enter a fraction in the form of x/y: ")
+# If the second input is a fraction, proceed with the script
     if isfloat(num2) == True and is_integer(num2) == False:
         print(num1,"**",num2,"=",float(num1) ** float(Fraction(num2)))
         finalchoice()
+# If not, print error message
     else:
         print("--Invalid second input value. Fraction is expected.")
         radical()
@@ -170,12 +178,15 @@ for number in list:
 # Function that contains the user's operator choice
 def op_choice():
     operator = input("Type a number corresponding to an operator from the list: ")
+ # If the input is not an integer, print an error message and restart the function
     if is_integer(operator) == False:
         print("--Invalid input value. Please choose a valid DIGIT to perform.")
         op_choice()
+# Checks if the integer inputted is within the parameters of 1-8
     elif float(operator) < 1 or float(operator) > 8:
-        print("--Invalid input value. Please choose a number from 1 to 7")
+        print("--Invalid input value. Please choose a number from 1 to 8")
         op_choice()
+# If the input doesn't apply to the above conditions, then proceed with the script
     else:
 
 # Depending on the user's operator choice, a certain function will be called
