@@ -31,21 +31,21 @@ def isfloat(num):
     except ValueError:
         return False
 
-# All the functions that contain the calculations below:
+# All the functions that contain the calculations are below:
 def add():
     print("_ + _")
     num1 = input("Enter a number: ")
     if is_integer(num1) == True:
         print(num1,"+ _")
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         add()
     num2 = input("Enter another number: ")
     if is_integer(num2) == True:
-        print(num1,"+",num2,"=",float(num1) + float(num2))
+        print(num1,"+",num2,"=",int(num1) + int(num2))
         finalchoice()
     else:
-        print("Invalid input value. Please choose again")
+        print("--Invalid input value. Please choose an integer.")
         add()
 
 def sub():
@@ -54,14 +54,14 @@ def sub():
     if is_integer(num1) == True:
         print(num1,"- _")
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         sub()
     num2 = input("Enter another number: ")
     if is_integer(num2) == True:
-        print(num1,"-",num2,"=",float(num1) - float(num2))
+        print(num1,"-",num2,"=",int(num1) - int(num2))
         finalchoice()
     else:
-        print("Invalid input value. Please choose again")
+        print("--Invalid input value. Please choose an integer.")
         sub()
 
 def multiply():
@@ -70,14 +70,14 @@ def multiply():
     if is_integer(num1) == True:
         print(num1,"* _")
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         multiply()
     num2 = input("Enter another number: ")
     if is_integer(num2) == True:
-        print(num1,"*",num2,"=",float(num1) * float(num2))
+        print(num1,"*",num2,"=",int(num1) * int(num2))
         finalchoice()
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         multiply()
 
 def divide():
@@ -86,30 +86,30 @@ def divide():
     if is_integer(num1) == True:
         print(num1,"/ _")
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         divide()
     num2 = input("Enter another number: ")
-    if is_integer(num2) == True and float(num2) > 0:
-        print(num1,"/",num2,"=",float(num1) / float(num2))
+    if num2 == 0:
+        print("--Bad input, cannot divide by 0. Please choose an integer")
+        divide()     
+    elif is_integer(num2) == True:
+        print(num1,"/",num2,"=",int(num1) / int(num2))
         finalchoice()
-    elif float(num2) == 0:
-        print("Bad input, cannot divide by 0. Please choose again")
-        divide()
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         divide()
 
 def squareroot():
     print("√ _")
     num1 = input("Enter a number: ")
     if is_integer(num1) == False:
-        print("Invalid input value. Please choose again. ")
+        print("--Invalid input value. Please choose a positive integer. ")
         squareroot()
     elif float(num1) >= 0:
        print("√",num1,"=",float(num1) ** 0.5)
        finalchoice()
     else:
-       print("Cannot squareroot negative.")
+       print("--Cannot squareroot negative.")
        squareroot()
 
 def power():
@@ -118,14 +118,14 @@ def power():
     if is_integer(num1) == True:
         print(num1,"** _")
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         power()
     num2 = input("Enter another number: ")
     if is_integer(num2) == True:
-        print(num1,"**",num2,"=",float(num1) ** float(num2))
+        print(num1,"**",num2,"=",int(num1) ** int(num2))
         finalchoice()
     else:
-        print("Invalid input value. Please choose again")
+        print("--Invalid input value. Please choose an integer.")
         power()
 
 def radical():
@@ -134,14 +134,14 @@ def radical():
     if is_integer(num1) == True:
         print(num1,"** _")
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         radical()
     num2 = input("Enter a fraction in the form of x/y: ")
-    if isfloat(num2) == True:
+    if isfloat(num2) == True and is_integer(num2) == False:
         print(num1,"**",num2,"=",float(num1) ** float(Fraction(num2)))
         finalchoice()
     else:
-        print("Invalid input value. Please choose again")
+        print("--Invalid second input value. Fraction is expected.")
         radical()
 
 def modulus():
@@ -150,34 +150,35 @@ def modulus():
     if is_integer(num1) == True:
         print(num1,"% _")
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         modulus()
     num2 = input("Enter another number: ")
     if is_integer(num2) == True:
-        print(num1,"%",num2,"=",float(num1) % float(num2))
+        print(num1,"%",num2,"=",int(num1) % int(num2))
         finalchoice()
     else:
-        print("Invalid input value. Please choose again.")
+        print("--Invalid input value. Please choose an integer.")
         modulus()
 
 
-
-   
-# prints the list of choices of operators
+# Prints the list of choices of operators
 list = ['1. Add','2. Subtract','3. Multiply','4. Divide',"5. Square Root","6. Power","7. Radical","8. Modulus"]
 print("Note: Fractions can only be used with the Radical operator.")
 for number in list:
     print(number)
 
-# function that contains the user's operator choice
+# Function that contains the user's operator choice
 def op_choice():
     operator = input("Type a number corresponding to an operator from the list: ")
-    if float(operator) < 1 or float(operator) > 8:
-        print("Invalid input value. Please choose a number from the list.")
-    elif is_integer(operator) == False:
-        print("Invalid input value. Please choose a number from the list.")
+    if is_integer(operator) == False:
+        print("--Invalid input value. Please choose a valid DIGIT to perform.")
+        op_choice()
+    elif float(operator) < 1 or float(operator) > 8:
+        print("--Invalid input value. Please choose a number from 1 to 7")
+        op_choice()
     else:
-# Depending on the user's choice, a certain operator will be called
+
+# Depending on the user's operator choice, a certain function will be called
         if operator == "1":
             add()
     
@@ -198,6 +199,7 @@ def op_choice():
 
         elif operator == "7":
             radical()
+        
         elif operator == "8":
             modulus()
 
