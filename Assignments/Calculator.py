@@ -143,11 +143,15 @@ def radical():
         print("--Invalid input value. Please choose an integer.")
         radical()
     num2 = input("Enter a fraction in the form of x/y: ")
-# If the second input is a fraction, proceed with the script
-    if isfloat(num2) == True and is_integer(num2) == False:
+# Check if the user is trying to take the even root of a negative number
+    if float(num1) < 0 and ((Fraction(num2)).denominator % 2) == 0:
+        print("Invalid input value. Cannot take even root of negative number.")
+        radical()
+#If the second input is a fraction, proceed with the script
+    elif isfloat(num2) == True and is_integer(num2) == False:
         print(num1,"**",num2,"=",float(num1) ** float(Fraction(num2)))
         finalchoice()
-# If not, print error message
+# If not, restart the function
     else:
         print("--Invalid second input value. Fraction is expected.")
         radical()
