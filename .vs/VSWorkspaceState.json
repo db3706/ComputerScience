@@ -3,25 +3,11 @@
     "",
     "\\Assignments",
     "\\In class exercises",
-<<<<<<< HEAD
     "\\In class exercises\\Session 1 Nov 22",
     "\\In class exercises\\Session 2 Nov 29",
     "\\In class exercises\\Session 3 Dec 5",
-    "\\References",
-=======
-    "\\In class exercises\\Session 3 Dec 5",
-    "\\In class exercises\\Session 4 Dec 7",
-    "\\References",
-    "\\Review Answers",
->>>>>>> 8f6fc75d2f5c4c5dceeb88ae53b3320aeab6db82
-    "\\Review Answers\\Review 4.6",
-    "\\Review Answers\\Review 5",
-    "\\Review Answers\\Review 8"
+    "\\References"
   ],
-<<<<<<< HEAD
-  "SelectedNode": "\\In class exercises\\Session 3 Dec 5\\Exercise9.py",
-=======
   "SelectedNode": "\\Assignments\\Calculator.py",
->>>>>>> 8f6fc75d2f5c4c5dceeb88ae53b3320aeab6db82
   "PreviewInSolutionExplorer": false
 }
