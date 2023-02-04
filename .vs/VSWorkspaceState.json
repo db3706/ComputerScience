@@ -3,11 +3,22 @@
     "",
     "\\Assignments",
     "\\In class exercises",
+<<<<<<< HEAD
     "\\In class exercises\\Session 1 Nov 22",
     "\\In class exercises\\Session 2 Nov 29",
     "\\In class exercises\\Session 3 Dec 5",
     "\\References"
   ],
   "SelectedNode": "\\Assignments\\Calculator.py",
+=======
+    "\\In class exercises\\Session 3 Dec 5",
+    "\\References",
+    "\\Review Answers",
+    "\\Review Answers\\Review 4.6",
+    "\\Review Answers\\Review 5",
+    "\\Review Answers\\Review 8"
+  ],
+  "SelectedNode": "\\Assignments\\quicksort.py",
+>>>>>>> b230486e9006de8343d916e2ec71d7074ea5df7f
   "PreviewInSolutionExplorer": false
 }
