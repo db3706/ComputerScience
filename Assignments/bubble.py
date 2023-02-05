@@ -1,20 +1,23 @@
+# imports
+import time
 
-def bubble(list_a):
-    indexing_length = len(list_a) - 1
-    sorted = False
+# helper methods
+def swap(A, i, j):
+	A[i], A[j] = A[j], A[i]
 
-    while not sorted:
-        sorted = True
-        for i in range(0, indexing_length):
-            if list_a[i] > list_a[i+1]:
-                sorted = False
-                list_a[i], list_a[i+1] = list_a[i+1], list_a[i]
-    return list_a
 
-print(bubble([4,6,8,3,2,5,7,8,9]))
+# algorithms
+def bubblesort(A):
+	swapped = True
+	
+	for i in range(len(A) - 1):
+		if not swapped:
+			return
+		swapped = False
+		
+		for j in range(len(A) - 1 - i):
+			if A[j] > A[j + 1]:
+				swap(A, j, j + 1)
+				swapped = True
+			yield A
 
-# Ignore
-def visualize():
-    N = 100
-    A = list(range(1, N + 1))
-    random.shuffle(A)

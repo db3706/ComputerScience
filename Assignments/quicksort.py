@@ -1,71 +1,57 @@
+# Quick sort in Python
 import random
-from matplotlib import pyplot as plt, animation
+import time
+# function to find the partition position
+def partition(array, low, high):
 
+  # choose the rightmost element as pivot
+  pivot = array[high]
 
-def quick_sort(sequence):
-    length = len(sequence)
-    if length <= 1:
-        return sequence
-    else:
-        pivot = sequence.pop()
+  # pointer for greater element
+  i = low - 1
 
-    items_greater = []
-    items_lower = []
+  # traverse through all elements
+  # compare each element with pivot
+  for j in range(low, high):
+    if array[j] <= pivot:
+      # if element smaller than pivot is found
+      # swap it with the greater element pointed by i
+      i = i + 1
 
-    for item in sequence:
-        if item > pivot:
-            items_greater.append(item)
+      # swapping element at i with element at j
+      (array[i], array[j]) = (array[j], array[i])
 
-        else:
-            items_lower.append(item)
+  # swap the pivot element with the greater element specified by i
+  (array[i + 1], array[high]) = (array[high], array[i + 1])
 
-    yield quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
+  # return the position from where partition is done
+  return i + 1
 
+# function to perform quicksort
+def quickSort(array, low, high):
+  if low < high:
 
-def visualize():
-	
-	N = random.sample(range(1, 101), 100)
-	A = list(N)
-	random.shuffle(A)
-	
-	# creates a generator object containing all
-	# the states of the array while performing
-	# sorting algorithm
-	generator = quick_sort(A)
-	
-	# creates a figure and subsequent subplots
-	fig, ax = plt.subplots()
-	ax.set_title("Bubble Sort O(n\N{SUPERSCRIPT TWO})")
-	bar_sub = ax.bar(range(len(A)), A, align="edge")
-	
-	# sets the maximum limit for the x-axis
-	ax.set_xlim(0, 100)
-	text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
-	iteration = [0]
-	
-	# helper function to update each frame in plot
-	def update(A, rects, iteration):
-		for rect, val in zip(rects, A):
-			rect.set_height(val)
-		iteration[0] += 1
-		text.set_text(f"# of operations: {iteration[0]}")
+    # find pivot element such that
+    # element smaller than pivot are on the left
+    # element greater than pivot are on the right
+    pi = partition(array, low, high)
 
-	# creating animation object for rendering the iteration
-	anim = animation.FuncAnimation(
-		fig,
-		func=update,
-		fargs=(bar_sub, iteration),
-		frames=generator,
-		repeat=True,
-		blit=False,
-		interval=15,
-		save_count=90000,
-	)
-	
-	# for showing the animation on screen
-	plt.show()
-	plt.close()
+    # recursive call on the left of pivot
+    quickSort(array, low, pi - 1)
 
+    # recursive call on the right of pivot
+    quickSort(array, pi + 1, high)
 
-if __name__ == "__main__":
-	visualize()
+# Set data to a list of 10,000 random values
+# The actual values range from 1 to 100,000
+data = list(random.sample(range(1, 100000), 10000))
+size = len(data)
+start = time.time()
+quickSort(data, 0, size - 1)
+
+print('Sorted Array in Ascending Order:')
+print(data)
+end = time.time()
+print("Time required: ", end - start)
+
+# Credits: https://www.programiz.com/dsa/quick-sort
