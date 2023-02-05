@@ -24,8 +24,9 @@ def bubblesort(A):
 
 
 def visualize():
-	N = 30
-	A = list(range(1, N + 1))
+	
+	N = random.sample(range(1, 101), 100)
+	A = list(N)
 	random.shuffle(A)
 	
 	# creates a generator object containing all
@@ -39,7 +40,7 @@ def visualize():
 	bar_sub = ax.bar(range(len(A)), A, align="edge")
 	
 	# sets the maximum limit for the x-axis
-	ax.set_xlim(0, N)
+	ax.set_xlim(0, 100)
 	text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
 	iteration = [0]
 	
