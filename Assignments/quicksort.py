@@ -1,57 +1,46 @@
-# Quick sort in Python
-import random
+# Imports
 import time
-# function to find the partition position
-def partition(array, low, high):
+import random
 
-  # choose the rightmost element as pivot
-  pivot = array[high]
+# Quicksort algorithm
+def quick_sort(sequence):
+    length = len(sequence)
+    if length <= 1:
+        return sequence
+    else:
+        # pop() removes a value from a specified locaiton and returns it
+        pivot = sequence.pop()
 
-  # pointer for greater element
-  i = low - 1
+    # values greater than pivot
+    items_greater = []
+    # values less than pivot
+    items_lower = []
 
-  # traverse through all elements
-  # compare each element with pivot
-  for j in range(low, high):
-    if array[j] <= pivot:
-      # if element smaller than pivot is found
-      # swap it with the greater element pointed by i
-      i = i + 1
+    for item in sequence:
+        # if the value is greater than pivot,
+        # append the value to the items_greater list
+        if item > pivot:
+            items_greater.append(item)
+        # if the value is less than pivot,
+        # append the value to the items_lower list
+        else:
+            items_lower.append(item)
+    # apply the algorithm again to items_lower, the pivot in the center, and items_greater
+    return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
 
-      # swapping element at i with element at j
-      (array[i], array[j]) = (array[j], array[i])
 
-  # swap the pivot element with the greater element specified by i
-  (array[i + 1], array[high]) = (array[high], array[i + 1])
 
-  # return the position from where partition is done
-  return i + 1
-
-# function to perform quicksort
-def quickSort(array, low, high):
-  if low < high:
-
-    # find pivot element such that
-    # element smaller than pivot are on the left
-    # element greater than pivot are on the right
-    pi = partition(array, low, high)
-
-    # recursive call on the left of pivot
-    quickSort(array, low, pi - 1)
-
-    # recursive call on the right of pivot
-    quickSort(array, pi + 1, high)
 
 # Set data to a list of 10,000 random values
 # The actual values range from 1 to 100,000
 data = list(random.sample(range(1, 100000), 10000))
-size = len(data)
+# Start the timer
 start = time.time()
-quickSort(data, 0, size - 1)
-
 print('Sorted Array in Ascending Order:')
-print(data)
+print(quick_sort(data))
+# End the timer
 end = time.time()
-print("Time required: ", end - start)
+# Print the time required to finish sorting in seconds, rounded to two decimal places
+print("Time required: ", round((end - start), 2),"seconds")
 
-# Credits: https://www.programiz.com/dsa/quick-sort
+# Credits: https://youtu.be/kFeXwkgnQ9U
