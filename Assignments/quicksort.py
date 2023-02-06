@@ -1,21 +1,57 @@
+# Quick sort in Python
+import random
+import time
+# function to find the partition position
+def partition(array, low, high):
 
-def quick_sort(sequence):
-    length = len(sequence)
-    if length <= 1:
-        return sequence
-    else:
-        pivot = sequence.pop()
+  # choose the rightmost element as pivot
+  pivot = array[high]
 
-    items_greater = []
-    items_lower = []
+  # pointer for greater element
+  i = low - 1
 
-    for item in sequence:
-        if item > pivot:
-            items_greater.append(item)
+  # traverse through all elements
+  # compare each element with pivot
+  for j in range(low, high):
+    if array[j] <= pivot:
+      # if element smaller than pivot is found
+      # swap it with the greater element pointed by i
+      i = i + 1
 
-        else:
-            items_lower.append(item)
+      # swapping element at i with element at j
+      (array[i], array[j]) = (array[j], array[i])
 
-    return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
+  # swap the pivot element with the greater element specified by i
+  (array[i + 1], array[high]) = (array[high], array[i + 1])
 
-print(quick_sort([5,6,7,8,9,3,5,1,2,4,8,6]))
+  # return the position from where partition is done
+  return i + 1
+
+# function to perform quicksort
+def quickSort(array, low, high):
+  if low < high:
+
+    # find pivot element such that
+    # element smaller than pivot are on the left
+    # element greater than pivot are on the right
+    pi = partition(array, low, high)
+
+    # recursive call on the left of pivot
+    quickSort(array, low, pi - 1)
+
+    # recursive call on the right of pivot
+    quickSort(array, pi + 1, high)
+
+# Set data to a list of 10,000 random values
+# The actual values range from 1 to 100,000
+data = list(random.sample(range(1, 100000), 10000))
+size = len(data)
+start = time.time()
+quickSort(data, 0, size - 1)
+
+print('Sorted Array in Ascending Order:')
+print(data)
+end = time.time()
+print("Time required: ", end - start)
+
+# Credits: https://www.programiz.com/dsa/quick-sort

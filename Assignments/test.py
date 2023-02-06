@@ -1,12 +1,10 @@
-# imports
-import time
-
-# helper methods
+import random
+# swap function
 def swap(A, i, j):
 	A[i], A[j] = A[j], A[i]
 
 
-# algorithms
+# bubble sort algorithm
 def bubblesort(A):
 	swapped = True
 	
@@ -19,5 +17,10 @@ def bubblesort(A):
 			if A[j] > A[j + 1]:
 				swap(A, j, j + 1)
 				swapped = True
-			yield A
+			return A
 
+N = random.sample(range(1, 10), 9)
+A = list(N)
+random.shuffle(A)
+
+print(bubblesort(A))
