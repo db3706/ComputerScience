@@ -26,3 +26,4 @@ squared = Rectangle(4, 4)
 cubed = Cube(4, 4, 4)
 print("Squared =",squared.area())
 print("Cubed =",cubed.vol())
+
