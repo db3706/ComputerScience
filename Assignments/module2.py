@@ -1,24 +1,26 @@
 
+# Parent classes
 class Rectangle:
     def __init__(self, length, width):
         self.length = length
         self.width = width
-
-
-class Square(Rectangle):
-    def __init__(self, length, width):
-        super().__init__(length, width)
-    
+    # Rather than create two separate classes for square and cube, I can
+    # define the area formula here to optimize and keep the code short.
     def area(self):
-        return self.length * self.width
+        area = self.length * self.width
+        return area
 
 class Cube(Rectangle):
-    def __init__(self, height):
-        super().__init__(self, height)
+    def __init__(self, length, width, height):
+        super().__init__(length, width)
         self.height = height
 
-    def area(self):
-        return self.length * self.width * self.height
+    def vol(self):
+        # use the super() function to inherit the properties of area() in class Rectangle
+        volume = super().area() * self.height
+        return volume
 
-print(str(Square(3, 3)))
-
+squared = Rectangle(4, 4)
+cubed = Cube(4, 4, 4)
+print("Squared =",squared.area())
+print("Cubed =",cubed.vol())
