@@ -1,56 +1,97 @@
-# 10.2 - Instantiate an Object
 
+class Animal:
 
-# Exercise 1
-class Dog:
-
-    species = "Canis familiaris"
-
-    def __init__(self, name, age, coat_color):
+    def __init__(self, name, age, colour):
         self.name = name
         self.age = age
-        self.coat_color = coat_color
-
-    def __str__(self):
-        return f"{self.name} is {self.age} years old"
+        self.colour = colour
 
     def speak(self, sound):
-        self.sound = sound
         return f"{self.name} says {sound}"
+    
+    def speed(self, sprint_speed):
+        return f"{self.name} is {sprint_speed} at running"
 
+    def diet(self, consumption):
+        return f"{self.name}'s species are {consumption}s"
 
-# The value for `age` can vary in your solution
-philo = Dog("Philo", 5, "brown")
-mango = Dog("Mango", 3, "spotted")
-print(f"{philo.name}'s coat is {philo.coat_color}.")
-print(f"{mango.name}'s coat is {mango.coat_color}.")
-print(f"{mango.speak}")
+    def burger(self, taste):
+        return f"{self.name}'s meat would make a {taste} burger patty"
 
+ 
+class Dog(Animal):
+    
+    def speak(self, sound="Bark!"):
+        return super().speak(sound)
 
-# Exercise 2
-class Car:
-    def __init__(self, color, mileage):
-        self.color = color
-        self.mileage = mileage
+    def speed (self, sprint_speed="fast"):
+        return super().speed(sprint_speed)
 
+    def diet(self, consumption="omnivore"):
+        return super().diet(consumption)
 
-blue_car = Car("blue", 20000)
-red_car = Car("red", 30000)
+class Cow(Animal):
+    
+    def speak(self, sound="Moo!"):
+        return super().speak(sound)
 
-for car in (blue_car, red_car):
-    print(f"The {car.color} car has {car.mileage:,} miles")
+    def burger(self, taste="very tasty"):
+        return super().burger(taste)
 
+    def diet(self, consumption="herbivore"):
+        return super().diet(consumption)
 
-# Exercise 3
-class Car:
-    def __init__(self, color, mileage):
-        self.color = color
-        self.mileage = mileage
+class Horse(Animal):
+    
+    def speak(self, sound="Neigh!"):
+        return super().speak(sound)
 
-    def drive(self, miles):
-        self.mileage = self.mileage + miles
+    def speed(self, sprinting_speed="very fast"):
+        return super().speed(sprinting_speed)
 
+    def diet(self, consumption="herbivore"):
+        return super().diet(consumption)
 
-blue_car = Car("blue", 0)
-blue_car.drive(100)
-print(blue_car.mileage)
+class Pig(Animal):
+
+    def speak(self, sound="Oink!"):
+        return super().speak(sound)
+
+    def diet(self, consumption="omnivore"):
+        return super().diet(consumption)
+
+# Define a dog
+dog = Dog("Princess","12","Golden")
+# Print dog's age
+print(f"{dog.name} is {dog.age} years old")
+# Print the sound of the dog
+print(dog.speak())
+# Print the dog's running speed
+print(dog.speed())
+# Print the dog's diet type
+print(dog.diet())
+
+print("")
+
+# Define a cow
+cow = Cow("Bessie","6","Black and White")
+print(f"{cow.name} is {cow.age} years old")
+print(cow.speak())
+print(cow.burger())
+print(cow.diet())
+
+print("")
+
+# Define a horse
+horse = Horse("Charlie","10","white")
+print(f"{horse.name} is {horse.age} years old")
+print(horse.speak())
+print(horse.speed())
+print(horse.diet())
+
+print("")
+# Define a pig
+pig = Pig("Napoleon","11","dark brown")
+print(f"{pig.name} is {pig.age} years old")
+print(pig.speak())
+print(pig.diet())
