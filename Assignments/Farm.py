@@ -18,7 +18,7 @@ class Animal:
     def burger(self, taste):
         return f"{self.name}'s meat would make a {taste} burger patty"
 
- 
+
 class Dog(Animal):
     
     def speak(self, sound="Bark!"):
@@ -60,6 +60,7 @@ class Pig(Animal):
     def diet(self, consumption="omnivore"):
         return super().diet(consumption)
 
+print("Species = Dog")
 # Define a dog
 dog = Dog("Princess","12","Golden")
 # Print dog's age
@@ -73,15 +74,18 @@ print(dog.diet())
 
 print("")
 
+print("Species = Cow")
 # Define a cow
 cow = Cow("Bessie","6","Black and White")
 print(f"{cow.name} is {cow.age} years old")
 print(cow.speak())
+# Print if the cow would make a good burger
 print(cow.burger())
 print(cow.diet())
 
 print("")
 
+print("Species = Horse")
 # Define a horse
 horse = Horse("Charlie","10","white")
 print(f"{horse.name} is {horse.age} years old")
@@ -90,8 +94,10 @@ print(horse.speed())
 print(horse.diet())
 
 print("")
+print("Species = Pig")
 # Define a pig
 pig = Pig("Napoleon","11","dark brown")
 print(f"{pig.name} is {pig.age} years old")
 print(pig.speak())
+# Print the pig's diet
 print(pig.diet())
