@@ -43,7 +43,7 @@ class Cow(Animal):
 
 class Horse(Animal):
     
-    def speak(self, sound="Neigh!"):
+    def speak(self, sound="Neigh! (pftftftftft)"):
         return super().speak(sound)
 
     def speed(self, sprinting_speed="very fast"):
