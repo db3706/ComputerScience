@@ -15,6 +15,7 @@ class Dog:
         return f"{self.name} is {self.age} years old"
 
     def speak(self, sound):
+        self.sound = sound
         return f"{self.name} says {sound}"
 
 
@@ -23,7 +24,7 @@ philo = Dog("Philo", 5, "brown")
 mango = Dog("Mango", 3, "spotted")
 print(f"{philo.name}'s coat is {philo.coat_color}.")
 print(f"{mango.name}'s coat is {mango.coat_color}.")
-
+print(f"{mango.speak}")
 
 
 # Exercise 2
