@@ -22,6 +22,7 @@ class Animal:
 class Dog(Animal):
     
     def speak(self, sound="Bark!"):
+        # Call the function speak () from parent Animal class
         return super().speak(sound)
 
     def speed (self, sprint_speed="fast"):
@@ -29,6 +30,8 @@ class Dog(Animal):
 
     def diet(self, consumption="omnivore"):
         return super().diet(consumption)
+
+
 
 class Cow(Animal):
     
@@ -43,7 +46,7 @@ class Cow(Animal):
 
 class Horse(Animal):
     
-    def speak(self, sound="Neigh! (pftftftftft)"):
+    def speak(self, sound="Neigh!"):
         return super().speak(sound)
 
     def speed(self, sprinting_speed="very fast"):
@@ -60,11 +63,15 @@ class Pig(Animal):
     def diet(self, consumption="omnivore"):
         return super().diet(consumption)
 
-print("Species = Dog")
+
+# Printing the properties of the animals
+
 # Define a dog
-dog = Dog("Princess","12","Golden")
+dog = Dog("Doug","12","Golden")
 # Print dog's age
 print(f"{dog.name} is {dog.age} years old")
+# Print the colour of the dog's coat
+print(f"{dog.name} has a {dog.colour} coloured coat")
 # Print the sound of the dog
 print(dog.speak())
 # Print the dog's running speed
@@ -72,9 +79,7 @@ print(dog.speed())
 # Print the dog's diet type
 print(dog.diet())
 
-print("")
-
-print("Species = Cow")
+print("") # Provides space between each printed description
 # Define a cow
 cow = Cow("Bessie","6","Black and White")
 print(f"{cow.name} is {cow.age} years old")
@@ -84,8 +89,6 @@ print(cow.burger())
 print(cow.diet())
 
 print("")
-
-print("Species = Horse")
 # Define a horse
 horse = Horse("Charlie","10","white")
 print(f"{horse.name} is {horse.age} years old")
@@ -94,7 +97,6 @@ print(horse.speed())
 print(horse.diet())
 
 print("")
-print("Species = Pig")
 # Define a pig
 pig = Pig("Napoleon","11","dark brown")
 print(f"{pig.name} is {pig.age} years old")
