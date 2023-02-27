@@ -31,8 +31,6 @@ class Dog(Animal):
     def diet(self, consumption="omnivore"):
         return super().diet(consumption)
 
-
-
 class Cow(Animal):
     
     def speak(self, sound="Moo!"):
