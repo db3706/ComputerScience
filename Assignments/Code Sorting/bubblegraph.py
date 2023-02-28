@@ -1,19 +1,17 @@
 # Imports
 import random
-import time
 from matplotlib import pyplot as plt, animation
 
 # Swap function
 def swap(A, i, j):
+	# Swaps the positions of two numbers in the array
 	A[i], A[j] = A[j], A[i]
 
 
-# bubble sort algorithm
-# this function is specifically for the visualize() function
+# Bubble sort algorithm
 def bubblesort(A):
 	swapped = True
 	for i in range(len(A) - 1):
-		# if 
 		if not swapped:
 			return
 		swapped = False
@@ -26,8 +24,8 @@ def bubblesort(A):
 
 # Matplotlib function
 def visualize():
-	# Set a list of random values ranging from 1 to 10,000
-	N = random.sample(range(1, 10001), 10000)
+	# Set a list of random values ranging from 1 to 100
+	N = random.sample(range(1, 101), 100)
 	A = list(N)
 	random.shuffle(A)
 	
@@ -46,8 +44,8 @@ def visualize():
 	plt.ylabel("Value")
 
 	
-	# Sets the maximum limit to 10,000 for the x-axis
-	ax.set_xlim(0, 10000)
+	# Sets the maximum limit to 100 for the x-axis
+	ax.set_xlim(0, 100)
 	text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
 	iteration = [0]
 	
@@ -65,13 +63,13 @@ def visualize():
 		func=update,
 		fargs=(bar_sub, iteration),
 		frames=generator,
+		# Repeat set to False so the operation count stops once done sorting
 		repeat=False,
 		blit=False,
 		interval=15,
 		save_count=90000,
 	)
 	# For showing the animation on screen
-
 	plt.show()
 
 # Start the matplotlib graph
