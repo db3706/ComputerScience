@@ -2,15 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Assignments",
-<<<<<<< HEAD
+    "\\Assignments\\Class Inheritance",
     "\\In class exercises",
     "\\References"
-=======
-    "\\Assignments\\Class Inheritance",
-    "\\Assignments\\Code Sorting",
-    "\\In class exercises"
->>>>>>> d2d49c9436bf392dddbb4f7cfac0164d718dbdff
   ],
-  "SelectedNode": "\\Assignments\\Calculator.py",
+  "SelectedNode": "\\Assignments\\Class Inheritance\\Shoppingcart_dict.py",
   "PreviewInSolutionExplorer": false
 }
