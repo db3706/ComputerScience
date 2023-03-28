@@ -1,21 +1,24 @@
 import time
-items_in_cart = {}
+items_list = []
+price_list = []
 # Create the parent class ShoppingCart
 class ShoppingCart():
 
     def __init__(self, customer_name):
         self.customer_name = customer_name
 
-    # Method that stores product and price in a dictionary
+    # Method that stores product and price in two separate lists
     def add_item(self, product, price):
-        items_in_cart[product] = price
+        items_list.append(product)
+        price_list.append(price)
         return f"--{self.customer_name} added {product} to shopping cart."
 
-    def remove_item(self, product):
+    def remove_item(self, product, price):
         # Check if the product is in the shopping cart
-        if product in items_in_cart:
-            # Method that removes product and price from a dictionary
-            items_in_cart.pop(product)
+        if product in items_list and price in price_list:
+            # Method that removes product and price from a list
+            items_list.remove(product)
+            price_list.remove(price)
             return f"--{self.customer_name} removed {product} from shopping cart."
         # If product is not in shopping cart, print the following statement then restart
         else:
@@ -30,40 +33,40 @@ class Apple(ShoppingCart):
         # call the function add_item() from the parent class
         return super().add_item(product, price)
     
-    def remove_item(self, product="Apple"):
-        return super().remove_item(product)
+    def remove_item(self, product="Apple", price=2):
+        return super().remove_item(product, price)
 
 class Banana(ShoppingCart):
 
     def add_item(self, product="Banana", price=1):
         return super().add_item(product, price)
 
-    def remove_item(self, product="Banana"):
-        return super().remove_item(product)
+    def remove_item(self, product="Banana", price=1):
+        return super().remove_item(product, price)
 
 class Potato_chips(ShoppingCart):
 
     def add_item(self, product="Potato Chips", price=4):
         return super().add_item(product, price)
 
-    def remove_item(self, product="Potato Chips"):
-        return super().remove_item(product)
+    def remove_item(self, product="Potato Chips", price=4):
+        return super().remove_item(product, price)
 
 class Gummy_bears(ShoppingCart):
 
     def add_item(self, product="Gummy Bears", price=5):
         return super().add_item(product, price)
 
-    def remove_item(self, product="Gummy Bears"):
-        return super().remove_item(product)
+    def remove_item(self, product="Gummy Bears", price=5):
+        return super().remove_item(product, price)
 
 class Chocolate_bar(ShoppingCart):
 
     def add_item(self, product="Chocolate Bar", price=3):
         return super().add_item(product, price)
 
-    def remove_item(self, product="Chocolate Bar"):
-        return super().remove_item(product)
+    def remove_item(self, product="Chocolate Bar", price=3):
+        return super().remove_item(product, price)
 
 # Ask the customer for their name
 user_name = input("Enter your name: ")
@@ -150,12 +153,12 @@ def op_choice():
 
     # If "3" is inputted, print the current shopping cart with the total amount
     elif operator == "3":
-        if len(items_in_cart) > 0:
+        if items_list:
             print("----Current shopping cart----")
-            for keys in items_in_cart.keys():
-                print(keys)
+            for items in items_list:
+                print(items)
             print("-----------------------------")
-            total = sum(items_in_cart.values())
+            total = sum(price_list)
             print(f"Total: ${total}.")
             time.sleep(1.5)
             op_choice()
@@ -167,7 +170,7 @@ def op_choice():
 
     # If "3" is inputted, checkout and finish the script
     elif operator == "4":
-        total = sum(items_in_cart.values())
+        total = sum(price_list)
         print(f"Your total amounts to ${total}.")
         time.sleep(2)
         print("Paying...")
@@ -181,5 +184,3 @@ def op_choice():
 # Starts the script
 op_choice()
 
-# https://www.w3schools.com/python/python_dictionaries_add.asp
-# https://www.scaler.com/topics/remove-key-from-dictionary-python/
