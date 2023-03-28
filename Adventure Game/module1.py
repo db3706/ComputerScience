@@ -1,39 +1,46 @@
-from ursina import *
+'''
+Disclaimer: This solution is not scalable for creating a big world.
+Creating a game like Minecraft requires specialized knowledge and is not as easy
+to make as it looks.
+You'll have to do some sort of chunking of the world and generate a combined mesh
+instead of separate blocks if you want it to run fast. You can use the Mesh class for this.
+You can then use blocks with colliders like in this example in a small area
+around the player so you can interact with the world.
+'''
 
-# create a window
+from ursina import *
+from ursina.prefabs.first_person_controller import FirstPersonController
+
+
 app = Ursina()
 
-# most things in ursina are Entities. An Entity is a thing you place in the world.
-# you can think of them as GameObjects in Unity or Actors in Unreal.
-# the first parameter tells us the Entity's model will be a 3d-model called 'cube'.
-# ursina includes some basic models like 'cube', 'sphere' and 'quad'.
+# Define a Voxel class.
+# By setting the parent to scene and the model to 'cube' it becomes a 3d button.
 
-# the next parameter tells us the model's color should be orange.
+class Voxel(Button):
+    def __init__(self, position=(0,0,0)):
+        super().__init__(parent=scene,
+            position=position,
+            model='cube',
+            origin_y=.5,
+            texture='white_cube',
+            color=color.color(0, 0, random.uniform(.9, 1.0)),
+            highlight_color=color.lime,
+        )
 
-# 'scale_y=2' tells us how big the entity should be in the vertical axis, how tall it should be.
-# in ursina, positive x is right, positive y is up, and positive z is forward.
-
-player = Entity(model='cube', color=color.orange, scale_y=2)
-
-# create a function called 'update'.
-# this will automatically get called by the engine every frame.
-
-def update():
-    player.x += held_keys['d'] * time.dt
-    player.x -= held_keys['a'] * time.dt
-
-# this part will make the player move left or right based on our input.
-# to check which keys are held down, we can check the held_keys dictionary.
-# 0 means not pressed and 1 means pressed.
-# time.dt is simply the time since the last frame. by multiplying with this, the
-# player will move at the same speed regardless of how fast the game runs.
+for z in range(8):
+    for x in range(8):
+        voxel = Voxel(position=(x,0,z))
 
 
 def input(key):
-    if key == 'space':
-        player.y += 1
-        invoke(setattr, player, 'y', player.y-1, delay=.25)
+    if key == 'left mouse down':
+        hit_info = raycast(camera.world_position, camera.forward, distance=5)
+        if hit_info.hit:
+            Voxel(position=hit_info.entity.position + hit_info.normal)
+    if key == 'right mouse down' and mouse.hovered_entity:
+        destroy(mouse.hovered_entity)
 
 
-# start running the game
+player = FirstPersonController()
 app.run()
