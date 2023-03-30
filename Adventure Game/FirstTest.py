@@ -8,7 +8,7 @@ app = Ursina()
 ground = Entity(model='plane', collider='box', scale=64, texture='grass')
 
 # Create a basic cylinder shape
-entity = Entity(model=Cylinder(6, start=-.5), position=Vec3(1,1,1))
+entity = Entity(model=Cylinder(6, start=-.5), position=Vec3(1,1,2))
 entity.x = 0
 
 # Prefabs
