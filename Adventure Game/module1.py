@@ -33,7 +33,13 @@ class TextureBox(Button):
                 self.texture_choice += 1
                 self.texture_choice  %= len(self.textures)
                 self.texture = self.textures[self.texture_choice]
+                chatbox.enable()
 
+
+chatbox = WindowPanel(title='Hello. I am a red cube')
+chatbox.y = chatbox.panel.scale_y / 2 * chatbox.scale_y    # center the window panel
+
+chatbox.disable()
 
 TextureBox()
 player = FirstPersonController()
