@@ -16,11 +16,12 @@ cube1 = Entity(model='cube',
 cube2 = Entity(model='cube', 
                 position=(-3,1,10), 
                 texture='white_cube', 
-                color=color.blue)
+                color=color.blue,
+                collider='box')
 
 # Prefabs
 player = FirstPersonController()
-sky = Sky()
+Sky()
 
 
 # Testing the UI capabilities of Ursina
@@ -30,11 +31,8 @@ chatbox = WindowPanel(title='Hello. Testing.')
 chatbox.disable()
 
 def input(key):
-    # When T is pressed, show the UI
-    if key == 't':
-        chatbox.enable()
-    # When F is pressed, close the UI
-    elif key == 'f':
-        chatbox.disable()
+    if cube2.hovered == True:
+        if key == 'left mouse down':
+            chatbox.enable()
 
 app.run()
