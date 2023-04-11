@@ -2,6 +2,7 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 
+
 app = Ursina()
 
 # Create a ground so the player can move
@@ -34,5 +35,6 @@ def input(key):
     if cube2.hovered == True:
         if key == 'left mouse down':
             chatbox.enable()
+
 
 app.run()
