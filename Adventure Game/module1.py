@@ -1,39 +1,46 @@
 from ursina import *
+from ursina.prefabs.first_person_controller import FirstPersonController
 
-# create a window
 app = Ursina()
 
-# most things in ursina are Entities. An Entity is a thing you place in the world.
-# you can think of them as GameObjects in Unity or Actors in Unreal.
-# the first parameter tells us the Entity's model will be a 3d-model called 'cube'.
-# ursina includes some basic models like 'cube', 'sphere' and 'quad'.
+for z in range(10):
+    for x in range(10):
+        Entity(
+            model="cube", color=color.dark_gray, collider="box", ignore=True,
+            position = (x, 0, z),
+            parent=scene,
+            origin_y = 0.5,
+            texture = "white_cube"
+            )
 
-# the next parameter tells us the model's color should be orange.
+class TextureBox(Button):
+    def __init__(self, position=(5,2,5)):
+        super().__init__(
+            parent=scene,
+            position=position,
+            model="cube",
+            origin_y=0.5,
+            texture="ursina_logo",
+            color=color.color(0,0,1)
+            )
 
-# 'scale_y=2' tells us how big the entity should be in the vertical axis, how tall it should be.
-# in ursina, positive x is right, positive y is up, and positive z is forward.
+        self.texture_choice = 0
+        self.textures = ["ursina_logo", "grass", "shore"]
 
-player = Entity(model='cube', color=color.orange, scale_y=2)
-
-# create a function called 'update'.
-# this will automatically get called by the engine every frame.
-
-def update():
-    player.x += held_keys['d'] * time.dt
-    player.x -= held_keys['a'] * time.dt
-
-# this part will make the player move left or right based on our input.
-# to check which keys are held down, we can check the held_keys dictionary.
-# 0 means not pressed and 1 means pressed.
-# time.dt is simply the time since the last frame. by multiplying with this, the
-# player will move at the same speed regardless of how fast the game runs.
-
-
-def input(key):
-    if key == 'space':
-        player.y += 1
-        invoke(setattr, player, 'y', player.y-1, delay=.25)
+    def input (self, key):
+        if self.hovered:
+            if key == 'left mouse down':
+                self.texture_choice += 1
+                self.texture_choice  %= len(self.textures)
+                self.texture = self.textures[self.texture_choice]
+                chatbox.enable()
 
 
-# start running the game
+chatbox = WindowPanel(title='Hello. I am a red cube')
+chatbox.y = chatbox.panel.scale_y / 2 * chatbox.scale_y    # center the window panel
+
+chatbox.disable()
+
+TextureBox()
+player = FirstPersonController()
 app.run()
