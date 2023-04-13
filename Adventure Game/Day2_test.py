@@ -2,6 +2,7 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 
+# Define asset path
 application.asset_folder = Path(r'''C:\Users\darry\source\repos\db3706\CS-11\Adventure Game''')
 
 app = Ursina()
