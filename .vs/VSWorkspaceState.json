@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\Adventure Game",
+    "\\Adventure Game\\assets",
+    "\\Adventure Game\\assets\\kirby",
+    "\\Adventure Game\\assets\\kirby\\textures",
     "\\Assignments"
   ],
-  "SelectedNode": "\\Adventure Game\\Day3_test.py",
+  "SelectedNode": "\\Adventure Game\\assets\\jar",
   "PreviewInSolutionExplorer": false
 }
