@@ -2,9 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Adventure Game",
+<<<<<<< HEAD
     "\\Assignments",
     "\\Assignments\\Class Inheritance"
   ],
   "SelectedNode": "\\Assignments\\Class Inheritance\\Shoppingcart_list.py",
+=======
+    "\\Assignments"
+  ],
+  "SelectedNode": "\\Adventure Game\\Day2_test.py",
+>>>>>>> 72f9d43cb36c7e304763957eb302d3ac5529c8bf
   "PreviewInSolutionExplorer": false
 }
