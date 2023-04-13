@@ -40,6 +40,8 @@ yes_button1 = Button(text='Yes', color=color.azure)
 no_button = Button(text='No', color=color.red)
 ok_button = Button(text='Okay', color=color.azure)
 np_button = Button(text='No problem', color=color.azure)
+
+
 introduction = WindowPanel(
     title='Herbert',
     content=(
@@ -92,6 +94,7 @@ no_button.on_click = close_UI
 ok_button.on_click = ok_clicked
 yes_button1.on_click = yes_clicked
 np_button.on_click = objective_finished
+
 # Have the UI disabled by default
 introduction.disable()
 agree.disable()

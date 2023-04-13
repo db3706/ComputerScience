@@ -2,15 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Adventure Game",
-<<<<<<< HEAD
-    "\\References",
-    "\\Review Answers"
+    "\\Assignments",
+    "\\Assignments\\Class Inheritance"
   ],
-  "SelectedNode": "\\Adventure Game\\module1.py",
-=======
-    "\\Assignments"
-  ],
-  "SelectedNode": "\\Adventure Game\\Day1_test.py",
->>>>>>> 25672e10bcdaf287ea74daa9ca12ffc77fb479bb
+  "SelectedNode": "\\Assignments\\Class Inheritance\\Shoppingcart_list.py",
   "PreviewInSolutionExplorer": false
 }
