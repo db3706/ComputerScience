@@ -9,17 +9,28 @@ app = Ursina()
 objective_status = ["Not started"]
 
 # Create a ground so the player can move
-ground = Entity(model='plane', collider='box', scale=64, texture='grass',)
+ground = Entity(model='plane', collider='box', scale=100, texture='brick', texture_scale=(10,10))
 
+# Create the walls
+wall1 = Entity(model='cube', collider='box', position=(0,0,15), scale=(20,7,1), texture='brick', texture_scale=(5,5))
+wall2 = duplicate(wall1, z=-7)
+wall3 = Entity(model='cube', collider='box', position=(-10,0,4), scale=(1,7,21), texture='brick', texture_scale=(5,5))
+wall4 = Entity(model='cube', collider='box', position=(10,0,6), scale=(1,7,18), texture='brick', texture_scale=(5,5))
+
+# Kirby
+model = Entity(model='scene.gltf', texture='Material_baseColor.png', posiiton=(0,0,0), collider='mesh')
 # Create two basic cube shapes
+
+# The red objective cube
 cube1 = Entity(model='cube', 
-                position=(6,.5,10),
+                position=(20,.5,10),
                 collider='box',
                 texture='shore', 
                 color=color.red,
                 scale=.5,
                 enabled=False)
 
+# The talking cube NPC
 cube2 = Entity(model='cube', 
                 position=(-3,1,10), 
                 texture='white_cube', 
@@ -30,21 +41,15 @@ cube2 = Entity(model='cube',
 
 # Prefabs
 player = FirstPersonController()
-Sky()
 
 # Buttons
 yes_button1 = Button(text='Yes', color=color.azure)
 no_button = Button(text='No', color=color.red)
 ok_button = Button(text='Okay', color=color.azure)
 np_button = Button(text='No problem', color=color.azure)
-<<<<<<< HEAD
-
-
-=======
 brb_button = Button(text='Be right back', color=color.azure)
 
 # NPC Dialog Windows
->>>>>>> 72f9d43cb36c7e304763957eb302d3ac5529c8bf
 introduction = WindowPanel(
     title='Herbert',
     content=(
@@ -82,7 +87,7 @@ unfinished = WindowPanel(
     position=(0,-.2)
     )
 
-# Functions
+# Functions that define the buttons
 def close_UI():
     introduction.disable()
     player.enable()
@@ -111,16 +116,13 @@ def cube1clicked():
     objective_status.append("Finished")
     cube1.disable()
     
-# Buttons
+# Buttons for the UI
 no_button.on_click = close_UI
 ok_button.on_click = ok_clicked
 yes_button1.on_click = yes_clicked
 np_button.on_click = objective_finished
-<<<<<<< HEAD
-=======
 brb_button.on_click = objective_ongoing
 cube1.on_click = cube1clicked
->>>>>>> 72f9d43cb36c7e304763957eb302d3ac5529c8bf
 
 # Have the UI disabled by default
 introduction.disable()
@@ -131,16 +133,18 @@ unfinished.disable()
 
 # Click detector for Herbert the cube
 def input(key):
+    # Checks if the mouse is hovered over the cube
     if cube2.hovered == True:
         if key == 'left mouse down':
+            # Checks if the player hasn't accepted Herbert's quest yet
             if "Not started" in objective_status:
                 introduction.enable()
                 player.disable()
-
+            # Checks if the player accepted the quest, but hasn't completed it
             elif "Ongoing" in objective_status:
                 unfinished.enable()
                 player.disable()
-
+            # Checks if the player has successfully found the cube
             elif "Finished" in objective_status:
                 success.enable()
                 player.disable()
