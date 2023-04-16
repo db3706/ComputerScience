@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Adventure Game",
-    "\\Assignments",
-    "\\Assignments\\Class Inheritance"
+    "\\Adventure Game\\assets",
+    "\\Adventure Game\\assets\\kirby",
+    "\\Adventure Game\\assets\\kirby\\textures"
   ],
-  "SelectedNode": "\\Adventure Game\\Day2_test.py",
   "PreviewInSolutionExplorer": false
 }
