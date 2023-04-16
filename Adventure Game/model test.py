@@ -13,6 +13,7 @@ depths = Entity(model='map/depths.obj', collider='mesh', scale=40, texture='bric
 
 
 # NPCs
+# Credits: https://skfb.ly/6XFtT
 intro_guy = Entity(model='assets/lowpoly_person/scene.gltf', 
                    collider='box', 
                    color=color.azure, 
