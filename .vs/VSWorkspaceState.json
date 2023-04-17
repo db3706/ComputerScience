@@ -3,10 +3,8 @@
     "",
     "\\Adventure Game",
     "\\Adventure Game\\assets",
-    "\\Adventure Game\\assets\\kirby",
-    "\\Adventure Game\\assets\\kirby\\textures",
-    "\\Assignments"
+    "\\Adventure Game\\map"
   ],
-  "SelectedNode": "\\Adventure Game\\assets\\jar",
+  "SelectedNode": "\\Adventure Game\\map\\depths.bin",
   "PreviewInSolutionExplorer": false
 }
