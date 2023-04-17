@@ -3,8 +3,13 @@
     "",
     "\\Adventure Game",
     "\\Adventure Game\\assets",
-    "\\Adventure Game\\map"
+    "\\Adventure Game\\assets\\kirby",
+    "\\Adventure Game\\assets\\lowpoly_gold_coin",
+    "\\Adventure Game\\map",
+    "\\Assignments",
+    "\\Assignments\\Class Inheritance",
+    "\\Assignments\\Code Sorting"
   ],
-  "SelectedNode": "\\Adventure Game\\map\\depths.bin",
+  "SelectedNode": "\\Adventure Game\\Day3_test.py",
   "PreviewInSolutionExplorer": false
 }
