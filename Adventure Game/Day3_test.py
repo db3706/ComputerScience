@@ -20,13 +20,7 @@ wall1 = Entity(model='cube',
                texture_scale=(5,5),
                color=color.brown)
 
-wall2 = Entity(model='cube', 
-               collider='box', 
-               position=(10,2,30), 
-               scale=(5,6,1), 
-               texture='brick', 
-               texture_scale=(5,5),
-               color=color.brown)
+
 # Quest Items
 jar = Entity(model='assets/jar/scene.gltf', 
                 position=(30,0,0),
@@ -381,9 +375,7 @@ ec.enabled = False
 
 # https://github.com/mandaw2014/Sandbox/blob/master/player.py Line 100
 
-
-
-
+# Controls what happens when you click on an NPC
 def input(key):
     # Checks if the mouse is hovered over the NPC
     if intro_guy.hovered == True:
@@ -423,8 +415,6 @@ def input(key):
     if key == 'tab':    # press tab to toggle edit/play mode
         ec.enabled = not ec.enabled
         player.enabled = not player.enabled
-
-
 
 # Will be the money count in the final version
 money = Text(text = "Placeholder", 
