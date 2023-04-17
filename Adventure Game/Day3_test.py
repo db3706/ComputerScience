@@ -5,7 +5,6 @@ from ursina.prefabs.first_person_controller import FirstPersonController
 # Define asset path
 application.asset_folder = Path(r'''C:\Users\darry\source\repos\db3706\CS-11\Adventure Game''')
 
-
 app = Ursina()
 
 # Map
@@ -27,9 +26,6 @@ jar = Entity(model='assets/jar/scene.gltf',
                 collider='box',
                 scale=.15,
                 enabled=False)
-
-
-    
 
 # NPCs
 # Credits: https://skfb.ly/6XFtT
@@ -94,7 +90,7 @@ jarquest_close1_button = Button(text="I'll be back when I find it.", color=color
 jarquest_close2_button = Button(text="...", color=color.azure)
 jarquest_ongoing_close_button = Button(text="...", color=color.azure)
 jarquest_ending1_button = Button(text='No problem!', color=color.azure)
-jarquest_ending2_button = Button(text='Thanks, later.')
+jarquest_ending2_button = Button(text='Thanks, later.', color=color.azure)
 
 # NPC Dialog Windows
 #   Introduction
@@ -262,8 +258,6 @@ jar_quest_ending2 = WindowPanel(
     enabled=False
     )
 
-
-
 # Functions that define the buttons
 def intro():
     introduction.disable()
@@ -348,6 +342,7 @@ def jar_quest_ending2_close():
     player.enable()
 
 # Asign the functions to the buttons
+#   Buttons for Introduction dialog
 intro_button.on_click = intro
 intro_button2.on_click = intro2
 intro_button3.on_click = intro3
@@ -358,6 +353,7 @@ intro_button7.on_click = intro7
 intro_button8.on_click = intro8
 intro_finished_button.on_click = intro_finished
 
+#   Buttons for Jar quest dialog
 jarquest_button.on_click = jar_quest1
 jardecline_button.on_click = jar_quest_decline
 jarbargain_button.on_click = jar_quest_haggled
@@ -406,11 +402,10 @@ def input(key):
                 jar_quest_ending2.enable()
                 player.disable()
             
-
+    # Placeholder coin, will finish in final version
     if coin1.hovered == True:
         if key == 'left mouse down':
             coin1.disable()
-
 
     if key == 'tab':    # press tab to toggle edit/play mode
         ec.enabled = not ec.enabled
@@ -422,7 +417,5 @@ money = Text(text = "Placeholder",
              size = 0.05, 
              scale = (1, 1), 
              position = window.top_right - (0.1, 0.1))
-
-
 
 app.run()

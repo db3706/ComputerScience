@@ -28,4 +28,11 @@ I'm worried. Will you help me?
                 Thank you! *runs off*
 ''')
 conversation.start_conversation(convo)
+
+def input(key):
+    if key == 'space':
+        print(variables.evil)
+
+window.size = window.fullscreen_size * .5
+Sprite('shore', z=1)
 app.run()
