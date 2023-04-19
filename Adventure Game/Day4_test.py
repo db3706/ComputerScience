@@ -8,7 +8,7 @@ application.asset_folder = Path(r'''C:\Users\darry\source\repos\db3706\CS-11\Adv
 app = Ursina()
 
 # Map
-depths = Entity(model='map/depths.obj', collider='mesh', scale=40, texture='brick', position=(0,-5,0))
+depths = Entity(model='map/depths.obj', collider='mesh', scale=40, texture='brick')
 
 # Walls
 wall1 = Entity(model='cube', 

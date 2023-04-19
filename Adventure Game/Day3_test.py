@@ -35,7 +35,8 @@ intro_guy = Entity(model='assets/lowpoly_person/scene.gltf',
                    color=color.azure, 
                    scale=.3, 
                    position=(0,0,30), 
-                   rotation=(0,180,0))
+                   rotation=(0,180,0)
+                   )
 
 jar_guy_status = ['Not started']
 jar_guy = Entity(model='assets/lowpoly_person/scene.gltf', 

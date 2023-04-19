@@ -3,10 +3,11 @@
     "",
     "\\Adventure Game",
     "\\Adventure Game\\assets",
-    "\\Assignments",
+    "\\Adventure Game\\assets\\spongebob_squarepants",
+    "\\Adventure Game\\assets\\spongebob_squarepants\\textures",
     "\\Assignments\\Class Inheritance",
     "\\Assignments\\Code Sorting"
   ],
-  "SelectedNode": "\\Adventure Game\\Dialog_test.py",
+  "SelectedNode": "\\Adventure Game\\model_test.py",
   "PreviewInSolutionExplorer": false
 }
