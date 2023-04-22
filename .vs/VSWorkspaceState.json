@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Adventure Game",
-    "\\Adventure Game\\assets",
-    "\\Adventure Game\\map"
+    "\\Adventure Game\\assets"
   ],
-  "SelectedNode": "\\Adventure Game\\map\\depths.bin",
+  "SelectedNode": "\\Adventure Game\\dialog.py",
   "PreviewInSolutionExplorer": false
 }
