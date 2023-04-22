@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pamtri spongebob
+* source:	https://sketchfab.com/3d-models/pamtri-spongebob-de77b9d0d7324cdc9c95f946a8c61b5b
+* author:	jonny (https://sketchfab.com/jonnyboy1127)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pamtri spongebob" (https://sketchfab.com/3d-models/pamtri-spongebob-de77b9d0d7324cdc9c95f946a8c61b5b) by jonny (https://sketchfab.com/jonnyboy1127) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

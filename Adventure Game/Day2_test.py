@@ -81,7 +81,8 @@ introduction = WindowPanel(
         yes_button1,
         no_button,
         ),
-    position=(0,-.2)
+    position=(0,-.2),
+    enabled=False
     )
 
 agree = WindowPanel(
@@ -149,7 +150,6 @@ brb_button.on_click = objective_ongoing
 jar.on_click = jarclicked
 
 # Have the UI disabled by default
-introduction.disable()
 agree.disable()
 success.disable()
 unfinished.disable()

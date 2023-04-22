@@ -30,13 +30,12 @@ jar = Entity(model='assets/jar/scene.gltf',
 # NPCs
 # Credits: https://skfb.ly/6XFtT
 intro_guy_status = ['Not started']
-intro_guy = Entity(model='assets/lowpoly_person/scene.gltf', 
-                   collider='box', 
-                   color=color.azure, 
-                   scale=.3, 
+intro_guy = Entity(model='assets/spongebob_squarepants/scene.gltf', 
+                   collider='box',  
+                   scale=1, 
                    position=(0,0,30), 
-                   rotation=(0,180,0)
-                   )
+                   rotation=(0,180,0),
+                   texture='assets/spongebob_squarepants/textures/spongebob_baseColor.png')
 
 jar_guy_status = ['Not started']
 jar_guy = Entity(model='assets/lowpoly_person/scene.gltf', 
