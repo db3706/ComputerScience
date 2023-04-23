@@ -2,18 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Adventure Game",
-<<<<<<< HEAD
-    "\\Adventure Game\\assets"
-  ],
-  "SelectedNode": "\\Adventure Game\\dialog.py",
-=======
     "\\Adventure Game\\assets",
-    "\\Adventure Game\\assets\\spongebob_squarepants",
-    "\\Adventure Game\\assets\\spongebob_squarepants\\textures",
-    "\\Assignments\\Class Inheritance",
-    "\\Assignments\\Code Sorting"
+    "\\Adventure Game\\assets\\explorer"
   ],
-  "SelectedNode": "\\Adventure Game\\model_test.py",
->>>>>>> 2b78a63577c0114fc8a9b8e9ab2dd805f281108f
+  "SelectedNode": "\\Adventure Game\\assets\\lowpoly_gold_coin",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,11 @@
+Model Information:
+* title:	K-VRC Rigged
+* source:	https://sketchfab.com/3d-models/k-vrc-rigged-290a9690f8874b41b36e5ae91536e9ad
+* author:	superdrew25block (https://sketchfab.com/superdrew25block)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "K-VRC Rigged" (https://sketchfab.com/3d-models/k-vrc-rigged-290a9690f8874b41b36e5ae91536e9ad) by superdrew25block (https://sketchfab.com/superdrew25block) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
