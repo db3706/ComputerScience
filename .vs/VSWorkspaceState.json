@@ -3,11 +3,9 @@
     "",
     "\\Adventure Game",
     "\\Adventure Game\\assets",
-    "\\Adventure Game\\assets\\spongebob_squarepants",
-    "\\Adventure Game\\assets\\spongebob_squarepants\\textures",
-    "\\Assignments\\Class Inheritance",
-    "\\Assignments\\Code Sorting"
+    "\\Adventure Game\\assets\\pamtri_spongebob",
+    "\\Adventure Game\\assets\\spongebob_squarepants\\textures"
   ],
-  "SelectedNode": "\\Adventure Game\\model_test.py",
+  "SelectedNode": "\\Adventure Game\\assets\\StoneBricksBeige015",
   "PreviewInSolutionExplorer": false
 }
