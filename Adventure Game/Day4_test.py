@@ -292,7 +292,7 @@ def cube_clicked():
 
 quest_cube.on_click = cube_clicked
 # Prefabs
-player = FirstPersonController(position=(0,8,35), rotation=(0,180,0))
+player = FirstPersonController(position=(0,5,35), rotation=(0,180,0))
 ec = EditorCamera()
 ec.enabled = False
 
