@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lonely Robot
+* source:	https://sketchfab.com/3d-models/lonely-robot-e6c960e9af8744e991c85fdf1e1421bd
+* author:	groone (https://sketchfab.com/groone)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lonely Robot" (https://sketchfab.com/3d-models/lonely-robot-e6c960e9af8744e991c85fdf1e1421bd) by groone (https://sketchfab.com/groone) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

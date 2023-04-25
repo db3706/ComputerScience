@@ -1,0 +1,11 @@
+Model Information:
+* title:	Test Cube 2
+* source:	https://sketchfab.com/3d-models/test-cube-2-37a98253041d4da18797652636157839
+* author:	abeneth87 (https://sketchfab.com/abeneth87)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Test Cube 2" (https://sketchfab.com/3d-models/test-cube-2-37a98253041d4da18797652636157839) by abeneth87 (https://sketchfab.com/abeneth87) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
