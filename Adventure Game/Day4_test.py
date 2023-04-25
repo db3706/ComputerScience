@@ -32,6 +32,7 @@ wall2 = Entity(model='cube',
                texture_scale=(5,5),
                color=color.brown,
                enabled=False)
+
 # Quest Items
 quest_cube = Entity(model='assets/cube_companion/scene.gltf', 
                 position=(30,0,0),
@@ -291,7 +292,7 @@ def cube_clicked():
 
 quest_cube.on_click = cube_clicked
 # Prefabs
-player = FirstPersonController(position=(0,5,35), rotation=(0,180,0))
+player = FirstPersonController(position=(0,8,35), rotation=(0,180,0))
 ec = EditorCamera()
 ec.enabled = False
 

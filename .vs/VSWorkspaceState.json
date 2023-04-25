@@ -2,16 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Adventure Game",
-    "\\Adventure Game\\assets",
-<<<<<<< HEAD
-    "\\Adventure Game\\assets\\pamtri_spongebob",
-    "\\Adventure Game\\assets\\spongebob_squarepants\\textures"
+    "\\Adventure Game\\assets"
   ],
-  "SelectedNode": "\\Adventure Game\\assets\\StoneBricksBeige015",
-=======
-    "\\Adventure Game\\assets\\explorer"
-  ],
-  "SelectedNode": "\\Adventure Game\\assets\\lowpoly_gold_coin",
->>>>>>> 93f881eaa4430e23077a24820c7d74416819fc85
+  "SelectedNode": "\\Adventure Game\\Day4_test.py",
   "PreviewInSolutionExplorer": false
 }
