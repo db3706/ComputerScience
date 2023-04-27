@@ -2,7 +2,6 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 from ursina.prefabs.conversation import Conversation
-from direct.actor.Actor import Actor
 
 # Define asset path
 application.asset_folder = Path(r'''C:\Users\darry\source\repos\db3706\CS-11\Adventure Game''')
@@ -32,6 +31,7 @@ wall2 = Entity(model='cube',
                texture_scale=(5,5),
                color=color.brown,
                enabled=False)
+
 # Quest Items
 quest_cube = Entity(model='assets/cube_companion/scene.gltf', 
                 position=(30,0,0),
