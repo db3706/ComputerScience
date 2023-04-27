@@ -10,7 +10,7 @@ app = Ursina()
 
  # Calls myFunc after 5 seconds
 # Map
-depths = Entity(model='map/depths.obj', collider='mesh', scale=40, texture='brick')
+depths = Entity(model='map/depths.obj', collider='mesh', scale=40, texture='brick', positon=(0,0,0))
 
 # Walls
 wall1 = Entity(model='cube',
@@ -32,13 +32,117 @@ wall2 = Entity(model='cube',
                color=color.brown,
                enabled=False)
 
+wall3 = Entity(model='cube',
+               texture='brick',
+               collider='box',
+               position=(-40,2.5,-9), 
+               scale=(1,5,14), 
+               texture_scale=(5,5)
+               )
+
+# Vault models
+vault_door = Entity(model='cube',
+               texture='brick',
+               collider='box',
+               position=(-31,2.5,-9), 
+               scale=(1,5,4), 
+               visible=True, 
+               texture_scale=(5,5),
+               color=color.dark_gray,
+               enabled=True)
+
+debris = Entity(model='assets/stone_debris/scene.gltf',
+               position=(-30,0,-9), 
+               scale=0.005,
+               texture='brick',
+               color=color.dark_gray,
+               visible=False
+               )
+
+# Gate
+gate1 = Entity(model='cube',
+               texture='brick',
+               collider='box',
+               position=(2.5,2.5,-40), 
+               scale=(5,5,1), 
+               texture_scale=(5,5),
+               color=color.gold
+               )
+
+gate2 = Entity(model='cube',
+               texture='brick',
+               collider='box',
+               position=(-2.5,2.5,-40), 
+               scale=(5,5,1), 
+               texture_scale=(5,5),
+               color=color.gold
+               )
+
+# Area beyond the gate
+ground = Entity(model='cube',
+               texture='brick',
+               collider='box',
+               position=(0,-.5,-45), 
+               scale=(10,1,10), 
+               texture_scale=(5,5)
+               )
+# Treasure chest dialog
+chest_variables = Empty(
+    closed = 0
+)
+
+chest_popup = Conversation(variables_object=chest_variables, enabled=False)
+
+chest_dialog = dedent('''
+Fodder
+Wow, that's a lot of gold coins... I count about 50...
+    If I don't tell the explorer and keep the money for myself, this'll be enough to open the gate...
+        Or, I could tell the explorer and split the money evenly and I'll end up with 25 gold coins.
+            * *leave* (closed += 1)
+                Fodder
+''')
+
+# The two quest keys and their functions
+# Credits: https://skfb.ly/6WP69
+
+key1 = Entity(model='assets/old_gold_key/scene.gltf',
+              position=(0,.1,0),
+              scale=.1,
+              collider='box')
+
+key2 = Entity(model='assets/old_gold_key/scene.gltf',
+              position=(5,.1,0),
+              scale=.1,
+              collider='box')
+
+key_variables = Empty(
+    all_keys_found = 0, # 0 = 0 found, 1 = 1 found, 2 = both keys have been found
+    closed = 0
+)
+key_popup = Conversation(variables_object=key_variables, enabled=False)
+
+key_dialog = dedent('''
+Fodder
+--- Key found ---
+    * *Pick up* (all_keys_found += 1)
+        --- Key added to inventory ---
+            * *leave* (closed += 1)
+                Fodder
+''')
+
 # Quest Items
 quest_cube = Entity(model='assets/cube_companion/scene.gltf', 
-                position=(30,0,0),
+                position=(30,1,0),
                 collider='box',
                 scale=.5,
                 enabled=False)
 
+treasure_chest = Entity(model='assets/treasure_chest_model/scene.gltf',
+                        position=(-38,0,-9), 
+                        scale=.2,
+                        collider='mesh',
+                        rotation=(0,-90,0)
+                        )
 # UI
 coins = 0
 coins_ui = Text(text = '0', 
@@ -74,7 +178,7 @@ explorer = Entity(model='assets/lowpoly_person/scene.gltf',
                   rotation=(0,0,0)
                   )
 
-# Shopkeeper
+
 # Credits: https://skfb.ly/6Sxso
 shopkeeper = Entity(model='assets/k-vrc_rigged/scene.gltf',
                   collider='box',
@@ -84,20 +188,39 @@ shopkeeper = Entity(model='assets/k-vrc_rigged/scene.gltf',
                   )
 
 
-
 shop_stand = Entity(model='assets/saharahs_cart_-_animal_crossing_fanart/scene.gltf',
                   scale=0.03, 
                   rotation=(0,0,0),
                   position=(11,0,7)
                   )
+
+# Credits: https://skfb.ly/6QV9t
+gatekeeper = Entity(model='assets/npc_character/scene.gltf',
+                  collider='mesh',
+                  scale=0.02, 
+                  rotation=(0,180,0),
+                  position=(0,0,-38)
+                  )
+
+
+
+
+
 # Coins
 coin1 = Entity(model='assets/lowpoly_gold_coin/scene.gltf', 
               color=color.yellow, 
               position=(-4,0,0),
               collider='box')
 
+coin2 = Entity(model='assets/lowpoly_gold_coin/scene.gltf', 
+              color=color.yellow, 
+              position=(17,0,-13),
+              collider='box')
 
-
+coin3 = Entity(model='assets/lowpoly_gold_coin/scene.gltf', 
+              color=color.yellow, 
+              position=(-8,0,-22),
+              collider='box')
 
 # Introduction NPC Dialog
 intro_variables = Empty(
@@ -115,7 +238,7 @@ Oh, how unfortunate...
         You have been sent to The Depths, a dense, labyrinth-like region underneath the capital.
         People who fall under the social credit score are sent here to waste away and die.
             * Is there a way out?
-                Yes. The only way out is the gate at the end of the hallway behind me.
+                Yes. The only way out is the yellow gate at the end of the hallway behind me.
                 And opening it requires a hefty sum of money to prove your worth.
                     * How much are we talking here? (mission_solved += 1)
                         About 50 Gold Coins. There are coins scattered around the labyrinth, dropped from those who failed to escape.
@@ -125,6 +248,7 @@ Oh, how unfortunate...
                                         Fodder
 
 ''')
+
 intro_convo2 = dedent('''
 Fodder
 Good luck out there.
@@ -136,7 +260,8 @@ Good luck out there.
 cube_variables = Empty(
     mission_solved = 0, 
     closed = 0,
-    haggled = 0
+    haggled = 0,
+
 )
 
 
@@ -244,10 +369,12 @@ Remember to tell me once you've successfully found the gold so we can split it e
 
 # Shopkeeper Dialog
 shop_variables = Empty(
-    mission_solved = 0, 
+    mission_solved = 0, # 0 = not started, 1 = ongoing, 
     closed = 0,
-    enough_money = False
+    enough_money = 0,
+    dynamite_obtained = 0
 )
+
 
 shop_conversation = Conversation(variables_object=shop_variables, enabled=False)
 shop_convo1 = dedent('''
@@ -259,30 +386,57 @@ Hello. I am the shopkeeper of this labyrinth. How can I help you?
                 So, what do you need?
                     * What do you have?
                         I have clothes, blankets, explosives, used toys, and more.
-                            * Explosives you say? --I could use it for opening the vault--
+                            * Explosives you say? --I could use it for opening the vault-- (mission_solved += 1)
                                 Yes. I have dynamite which will cost you 15 gold coins.
                                     * *leave* (closed += 1)
                                         Fodder
                                 
-
-
 ''')
 
 shop_convo2 = dedent('''
 Fodder
-You don't have enough money for the dynamite. It costs 15 gold coins.
+You don't have enough money for the dynamite. Come back once you have 15 gold coins.
     * *leave* (closed += 1)
+        Fodder
 ''')
 
 shop_convo3 = dedent('''
 Fodder
 You have enough money to buy the dynamite. Would you like to spend 15 gold coins?
-    * Yes 
-        --- Dynamite has been added to your inventory ---
-            Thank you and have a nice day.
-                * *leave* (closed += 1)
+    * Yes (dynamite_obtained += 1)
+        --- Dynamite has been added to your inventory --- 
+            * Thanks Mr. Robot. (mission_solved += 1)
+                Stay safe out there.
+                    * *leave* (closed += 1)
+                        Fodder
     * No (closed += 1)
         Fodder
+''')
+
+shop_convo4 = dedent('''
+Fodder
+Good luck out there...
+    * *leave* (closed += 1)
+        Fodder
+''')
+# 
+gate_variables = Empty(
+    mission_solved = 0, # 0 = not started, 1 = ongoing, 2 = enough money to open gate
+    closed = 0,
+)
+
+
+gate_conversation = Conversation(variables_object=gate_variables, enabled=False)
+gate_convo1 = dedent('''
+Fodder
+...
+    * Who are you?
+        I'm the gatekeeper. My job is to guard the gate against those who have not gathered enough coins.
+            * ...
+                I'm also the only one capable of opening and closing this gate.
+                If on the slim chance you manage to gather 50 coins, talk to me and I'll open the gate for you.
+                    * *leave* (closed += 1)
+                        Fodder
 ''')
 # 
 def cube_clicked():
@@ -299,7 +453,6 @@ ec.enabled = False
 
 
    
-
 # Updater
 def update():
 # Intro NPC
@@ -311,6 +464,7 @@ def update():
         intro_variables.closed -= 1
 
 # Cube NPC
+    global coins
     # cube Quest dialogue closer
     if cube_variables.closed == 1:
         player.enable()
@@ -325,7 +479,6 @@ def update():
     # cube Quest finish and reward
     if cube_variables.mission_solved == 4:
         if cube_variables.haggled == 0:
-            global coins
             coins += 5
             coins_ui.text = str(coins)
             cube_variables.haggled -= 1
@@ -343,8 +496,20 @@ def update():
         explorer_conversation.disable()
         intro_variables.closed -= 1
 
-    if coins == 15:
-        shop_variables.enough_money = True
+# Vault key popup closer
+    if key_variables.closed == 1:
+        player.enable()
+        key_popup.disable()
+        key_variables.closed -= 1
+
+# Treasure chest popup closer
+    if chest_variables.closed == 1:
+        player.enable()
+        chest_popup.disable()
+        coins += 50
+        coins_ui.text = str(coins)
+        chest_variables.closed -= 1
+        treasure_chest.disable()
 
 # Shopkeeper NPC
     # Shopkeeper dialog closer
@@ -352,6 +517,45 @@ def update():
         player.enable()
         shop_conversation.disable()
         shop_variables.closed -= 1
+
+    # Subtracts 15 coins from player wallet after buying dynamite
+    if shop_variables.dynamite_obtained == 1:
+        coins -= 15
+        coins_ui.text = str(coins)
+        shop_variables.dynamite_obtained += 1 
+
+    if shop_variables.dynamite_obtained == 2:
+        key1.disable()
+        key2.disable()
+        shop_variables.dynamite_obtained += 1
+
+# Gatekeeper NPC
+    # Gatekeeper dialog closer
+    if gate_variables.closed == 1:
+        player.enable()
+        gate_conversation.disable()
+        gate_variables.closed -= 1
+# Blackout and explosion variables
+black_screen = Button(color=color.dark_gray, scale=100, enabled=False)
+explosion_audio = Audio('sounds/Explosion.mp3', loop=False, autoplay=False, volume=0.5)
+
+# Other audio
+coin_audio = Audio('sounds/Mario Coin Sound.mp3', loop=False, autoplay=False, volume=0.5)
+
+
+def explosion():
+    explosion_audio.play()
+    vault_door.disable()
+
+def vault_destroyed():
+    debris.visible = True
+    black_screen.disable()
+
+def vault_explosion():
+    black_screen.enable()
+    invoke(explosion, delay=1)
+    invoke(vault_destroyed, delay=4)
+
 
 # Controls what happens when you click on an NPC
 def input(key):
@@ -406,7 +610,7 @@ def input(key):
                 player.disable()
                 explorer_conversation.enable()
                 explorer_conversation.start_conversation(explorer_convo1)
-
+                
             # If the player hasn't unlocked the vault yet
             if explorer_variables.mission_solved == 1:
                 player.disable()
@@ -415,19 +619,97 @@ def input(key):
 
 # Shopkeeper NPC
     if shopkeeper.hovered == True:
-        if key =='left mouse down':
-            # If the player hasn't talked to the explorer yet
+        global coins
+        if key == 'left mouse down':
+            # If the player hasn't talked to the shopkeeper yet
             if shop_variables.mission_solved == 0:
                 player.disable()
                 shop_conversation.enable()
                 shop_conversation.start_conversation(shop_convo1)
+            
+            # If the player has already talked to the shopkeeper
+            if shop_variables.mission_solved == 1:
 
-# Placeholder coin, will finish in final version
+                # If the player returns but doesn't have enough money
+                if coins < 15:
+                    player.disable()
+                    shop_conversation.enable()
+                    shop_conversation.start_conversation(shop_convo2)
+
+                # If the player returns and has enough money
+                if coins >= 15:
+                    player.disable()
+                    shop_conversation.enable()
+                    shop_conversation.start_conversation(shop_convo3)
+
+                # If the player has already bought dynamite
+            if shop_variables.mission_solved == 2:
+                player.disable()
+                shop_conversation.enable()
+                shop_conversation.start_conversation(shop_convo4)
+
+# Gatekeeper NPC
+    if gatekeeper.hovered == True:
+        if key =='left mouse down':
+            if gate_variables.mission_solved == 0:
+                player.disable()
+                gate_conversation.enable()
+                gate_conversation.start_conversation(gate_convo1)
+
+# Vault Door
+    if vault_door.hovered == True:
+        if key == 'left mouse down':
+            if shop_variables.dynamite_obtained == 3:
+                vault_explosion()
+
+            if key_variables.all_keys_found == 2:
+                vault_door.animate_position(vault_door.position+(vault_door.down)*2, duration=5, curve=curve.linear)
+
+# Treasure chest
+    if treasure_chest.hovered == True:
+        if key == 'left mouse down':
+                player.disable()
+                chest_popup.enable()
+                chest_popup.start_conversation(chest_dialog)
+
+# Coin
     if coin1.hovered == True:
         if key == 'left mouse down':
-            global coins
+            coin_audio.play()
             coins += 15
             coins_ui.text = str(coins)
+            coin1.disable()
+
+
+    if coin2.hovered == True:
+        if key == 'left mouse down':
+            coin_audio.play()          
+            coins += 1
+            coins_ui.text = str(coins)
+            coin2.disable()
+
+
+    if coin3.hovered == True:
+        if key == 'left mouse down':
+            coin_audio.play()            
+            coins += 1
+            coins_ui.text = str(coins)
+            coin3.disable()
+
+# Vault Keys
+    if key1.hovered == True:
+        if key == 'left mouse down':
+            player.disable()
+            key_popup.enable()
+            key_popup.start_conversation(key_dialog)
+            key1.disable()
+
+    if key2.hovered == True:
+        if key == 'left mouse down':
+            player.disable()
+            key_popup.enable()
+            key_popup.start_conversation(key_dialog)
+            key2.disable()
 
     if key == 'tab':    # press tab to toggle edit/play mode
         ec.enabled = not ec.enabled
