@@ -3,8 +3,10 @@
     "",
     "\\Adventure Game",
     "\\Adventure Game\\assets",
-    "\\Adventure Game\\assets\\cube_companion"
+    "\\Adventure Game\\assets\\explorer",
+    "\\Adventure Game\\assets\\treasure_chest_model",
+    "\\Adventure Game\\sounds"
   ],
-  "SelectedNode": "\\Adventure Game\\Day4_test.py",
+  "SelectedNode": "\\Adventure Game\\assets\\treasure_chest_model",
   "PreviewInSolutionExplorer": false
 }
