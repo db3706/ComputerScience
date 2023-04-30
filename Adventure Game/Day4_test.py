@@ -30,7 +30,7 @@ wall2 = Entity(model='cube',
                visible=True, 
                texture_scale=(5,5),
                color=color.brown,
-               enabled=False)
+               enabled=True)
 
 wall3 = Entity(model='cube',
                texture='brick',
@@ -95,9 +95,9 @@ chest_popup = Conversation(variables_object=chest_variables, enabled=False)
 
 chest_dialog = dedent('''
 Fodder
-Wow, that's a lot of gold coins... I count about 50...
-    If I don't tell the explorer and keep the money for myself, this'll be enough to open the gate...
-        Or, I could tell the explorer and split the money evenly and I'll end up with 25 gold coins.
+Wow, that's a lot of gold coins... I count about 40...
+    If I don't tell the explorer and keep the money for myself, I'll have the full amount...
+        Or, I could tell the explorer and split the money evenly and I'll end up with 20 gold coins.
             * *leave* (closed += 1)
                 Fodder
 ''')
@@ -108,12 +108,14 @@ Wow, that's a lot of gold coins... I count about 50...
 key1 = Entity(model='assets/old_gold_key/scene.gltf',
               position=(0,.1,0),
               scale=.1,
-              collider='box')
+              collider='box',
+              enabled=True)
 
 key2 = Entity(model='assets/old_gold_key/scene.gltf',
               position=(5,.1,0),
               scale=.1,
-              collider='box')
+              collider='box',
+              enabled=True)
 
 key_variables = Empty(
     all_keys_found = 0, # 0 = 0 found, 1 = 1 found, 2 = both keys have been found
@@ -170,10 +172,10 @@ cube_guy = Entity(model='assets/homer_simpson_fan_art_sculpt/scene.gltf',
                  rotation=(0,90,0))
 
 
-# Credits: https://skfb.ly/6S9tt
-explorer = Entity(model='assets/lowpoly_person/scene.gltf',
+# Credits: https://skfb.ly/ooJLu
+explorer = Entity(model='assets/grog_the_adventurer/scene.gltf',
                   collider='box',
-                  scale=0.3, 
+                  scale=6, 
                   position=(-16,0,35), 
                   rotation=(0,0,0)
                   )
@@ -196,7 +198,7 @@ shop_stand = Entity(model='assets/saharahs_cart_-_animal_crossing_fanart/scene.g
 
 # Credits: https://skfb.ly/6QV9t
 gatekeeper = Entity(model='assets/npc_character/scene.gltf',
-                  collider='mesh',
+                  collider='box',
                   scale=0.02, 
                   rotation=(0,180,0),
                   position=(0,0,-38)
@@ -319,7 +321,8 @@ Thanks again for your help!
 explorer_variables = Empty(
     mission_solved = 0, 
     closed = 0,
-    shopkeeper_open = 0
+    shopkeeper_open = 0,
+    key_route = 0
 )
 
 explorer_conversation = Conversation(variables_object=explorer_variables, enabled=False)
@@ -343,18 +346,19 @@ Greetings! I haven't seen you around before. You must be new here. It's unfortun
                                                         But! I can tell that you aren't like those incorrigable criminals considering you haven't threatened me yet. So, I'd like to ask a favour of you. Of course there's a hefty reward.
                                                             * Sure, I'm listening...
                                                                 Alright, so unbenkownst to everyone else, I actually found the location of the vault, but opening it is the tricky part.
-                                                                    * Let me guess, there's a key...
+                                                                    * Let me guess, there's a key... (mission_solved += 1)
                                                                         There's a ke-.. Yeah, there is... But, the creator of the vault actually made two keys and scattered them across the labyrinth. I haven't been able to find them, but you, being all adventurous and determined, could definitely find it.
-                                                                            * ... (shopkeeper_open += 1)
-                                                                                And most importantly, if you manage to unlock the vault, we'll split the money evenly.
-                                                                                    * Fair. I best get to it then. (closed += 1)
-                                                                                        Good luck out there!
-                                                                                    * Cool, but I don't feel like running around on some treasure hunt looking for some keys.
-                                                                                        Ah, the lazy type eh? If you're that lazy, an alternative would be using dynamite to blow up the vault door. That would require you to buy it from a shopkeeper.
-                                                                                            * Alright, that gives me two options... (mission_solved += 1)
-                                                                                                Yep. You can either find the two keys or buy dynamite from a shopkeeper.
-                                                                                                    * *leave* (closed += 1)
-                                                                                                        Fodder
+                                                                            And also, if you're the lazy type, you can also buy dynamite as an alternative to opening that vault.
+                                                                                So, the choice is yours. Do you want to find the two keys or buy dynamite for opening the vault?
+                                                                                    * I'll buy dynamite. (shopkeeper_open += 1)
+                                                                                        Alright. You'll have to buy it from the shopkeeper robot. He's pretty easy to spot as he's painted red and accompanied with a merchant cart.
+                                                                                            * *leave* (closed += 1)
+                                                                                                Fodder
+                                                                                    * I'll find the two keys. (key_route += 1)
+                                                                                        Alright. Good luck on finding them...
+                                                                                            * *leave* (closed += 1)
+                                                                                                Fodder
+                                                                                        
                                                                 
     * *leave* (closed += 1)
         Fodder
@@ -363,7 +367,7 @@ Greetings! I haven't seen you around before. You must be new here. It's unfortun
 explorer_convo2 = dedent('''
 Fodder
 Remember to tell me once you've successfully found the gold so we can split it evenly!
-    * *leave* (close += 1)
+    * *leave* (closed += 1)
         Fodder
 ''')
 
@@ -432,11 +436,30 @@ Fodder
 ...
     * Who are you?
         I'm the gatekeeper. My job is to guard the gate against those who have not gathered enough coins.
-            * ...
+            * ... (mission_solved += 1)
                 I'm also the only one capable of opening and closing this gate.
-                If on the slim chance you manage to gather 50 coins, talk to me and I'll open the gate for you.
-                    * *leave* (closed += 1)
-                        Fodder
+                    If on the slim chance you manage to gather 50 coins, talk to me and I'll open the gate for you.
+                        * *leave* (closed += 1)
+                            Fodder
+''')
+
+gate_convo2 = dedent('''
+Fodder
+Talk to me once you've gathered 50 coins and I'll open the gate for you.
+    * *leave* (closed += 1)
+        Fodder
+''')
+gate_convo3 = dedent('''
+Fodder
+...
+    * I have enough money.
+        It seems you do. Congratulations, it's been a while since someone's accomplished this feat.
+            * ...
+                As promised, I'll open the gate now...
+                    * Finally...
+                        Good luck...
+                            * *leave* (closed += 1)
+                                Fodder
 ''')
 # 
 def cube_clicked():
@@ -494,8 +517,17 @@ def update():
     if explorer_variables.closed == 1:
         player.enable()
         explorer_conversation.disable()
-        intro_variables.closed -= 1
+        explorer_variables.closed -= 1
 
+    # If the player opens the option to get dynamite
+    if explorer_variables.shopkeeper_open == 1:
+        wall2.disable()
+        explorer_variables.shopkeeper_open -= 1
+
+    # If the player chooses to find the keys
+    if explorer_variables.key_route == 1:
+        key1.enable()
+        key2.enable()
 # Vault key popup closer
     if key_variables.closed == 1:
         player.enable()
@@ -524,10 +556,6 @@ def update():
         coins_ui.text = str(coins)
         shop_variables.dynamite_obtained += 1 
 
-    if shop_variables.dynamite_obtained == 2:
-        key1.disable()
-        key2.disable()
-        shop_variables.dynamite_obtained += 1
 
 # Gatekeeper NPC
     # Gatekeeper dialog closer
@@ -617,6 +645,8 @@ def input(key):
                 explorer_conversation.enable()
                 explorer_conversation.start_conversation(explorer_convo2)
 
+
+
 # Shopkeeper NPC
     if shopkeeper.hovered == True:
         global coins
@@ -651,12 +681,19 @@ def input(key):
 # Gatekeeper NPC
     if gatekeeper.hovered == True:
         if key =='left mouse down':
+            # If the player hasn't talked to the gatekeeper yet
             if gate_variables.mission_solved == 0:
                 player.disable()
                 gate_conversation.enable()
                 gate_conversation.start_conversation(gate_convo1)
 
+            # If the player has gathered enough money
+            if gate_variables.mission_solved == 1:
+                if coins >= 50:
+                    player.disable()
+
 # Vault Door
+
     if vault_door.hovered == True:
         if key == 'left mouse down':
             if shop_variables.dynamite_obtained == 3:
