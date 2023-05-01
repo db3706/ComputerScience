@@ -8,6 +8,8 @@ application.asset_folder = Path(r'''C:\Users\darry\source\repos\db3706\CS-11\Adv
 
 app = Ursina()
 
+window.fps_counter.enabled = False
+
  # Calls myFunc after 5 seconds
 # Map
 depths = Entity(model='map/depths.obj', collider='mesh', scale=40, texture='brick', positon=(0,0,0))
@@ -48,7 +50,7 @@ vault_door = Entity(model='cube',
                scale=(1,5,4), 
                visible=True, 
                texture_scale=(5,5),
-               color=color.dark_gray,
+               color=color.red,
                enabled=True)
 
 debris = Entity(model='assets/stone_debris/scene.gltf',
@@ -82,10 +84,26 @@ gate2 = Entity(model='cube',
 ground = Entity(model='cube',
                texture='brick',
                collider='box',
-               position=(0,-.5,-45), 
-               scale=(10,1,10), 
+               position=(0,-.5,-55), 
+               scale=(10,1,30), 
                texture_scale=(5,5)
                )
+
+wall4 = Entity(model='cube',
+               texture='brick',
+               collider='box',
+               position=(5,2,-55), 
+               scale=(1,5,30), 
+               texture_scale=(5,5)
+               )
+wall5 = Entity(model='cube',
+               texture='brick',
+               collider='box',
+               position=(-5,2,-55), 
+               scale=(1,5,30), 
+               texture_scale=(5,5)
+               )
+
 # Treasure chest dialog
 chest_variables = Empty(
     closed = 0
@@ -97,22 +115,23 @@ chest_dialog = dedent('''
 Fodder
 Wow, that's a lot of gold coins... I count about 40...
     If I don't tell the explorer and keep the money for myself, I'll have the full amount...
-        Or, I could tell the explorer and split the money evenly and I'll end up with 20 gold coins.
-            * *leave* (closed += 1)
-                Fodder
+    Or, I could tell the explorer and split the money evenly and I'll end up with 20 gold coins.
+        * *leave* (closed += 1)
+            Fodder
 ''')
+
 
 # The two quest keys and their functions
 # Credits: https://skfb.ly/6WP69
 
 key1 = Entity(model='assets/old_gold_key/scene.gltf',
-              position=(0,.1,0),
+              position=(-8,.1,0),
               scale=.1,
               collider='box',
               enabled=True)
 
 key2 = Entity(model='assets/old_gold_key/scene.gltf',
-              position=(5,.1,0),
+              position=(16,.1,0),
               scale=.1,
               collider='box',
               enabled=True)
@@ -139,12 +158,27 @@ quest_cube = Entity(model='assets/cube_companion/scene.gltf',
                 scale=.5,
                 enabled=False)
 
-treasure_chest = Entity(model='assets/treasure_chest_model/scene.gltf',
+# Cube item dialog
+cube_item_variables = Empty(
+    closed = 0
+)
+
+cube_item_popup = Conversation(variables_object=cube_item_variables, enabled=False)
+
+cube_item_dialog = dedent('''
+--- Cube added to inventory ---
+    * *leave* (closed += 1)
+        Fodder
+''')
+
+# Credits: https://skfb.ly/6WOHL
+treasure_chest = Entity(model='assets/treasure_chest/scene.gltf',
                         position=(-38,0,-9), 
-                        scale=.2,
+                        scale=0.01,
                         collider='mesh',
-                        rotation=(0,-90,0)
+                        rotation=(0,0,0)
                         )
+
 # UI
 coins = 0
 coins_ui = Text(text = '0', 
@@ -152,10 +186,14 @@ coins_ui = Text(text = '0',
              size = 0.05, 
              scale = (1, 1), 
              position = window.top_right - (0.1, 0.1))
-
+money_ui = Text(text = 'Coins:', 
+             origin = (0, 0), 
+             size = 0.05, 
+             scale = (1, 1), 
+             position = window.top_right - (0.2, 0.1))
 # NPCs
 
-# Credits: https://skfb.ly/6XFtT
+# Credits: https://skfb.ly/6Y8Jr
 
 intro_guy = Entity(model='assets/skeleton_in_a_suit/scene.gltf', 
                    collider='mesh',  
@@ -164,15 +202,22 @@ intro_guy = Entity(model='assets/skeleton_in_a_suit/scene.gltf',
                    rotation=(0,180,0)
                    )
 
+overseer = Entity(model='assets/skeleton_in_a_suit/scene.gltf', 
+                   collider='mesh',  
+                   scale=0.015, 
+                   position=(0,0,-50), 
+                   rotation=(0,180,0)
+                   )
+
 # Credits: https://skfb.ly/6RVpC
 cube_guy = Entity(model='assets/homer_simpson_fan_art_sculpt/scene.gltf', 
                  collider='box',
                  scale=.5, 
-                 position=(24,1.5,24), 
+                 position=(26,1.5,24), 
                  rotation=(0,90,0))
 
 
-# Credits: https://skfb.ly/ooJLu
+# Credits: https://skfb.ly/6QTTA
 explorer = Entity(model='assets/grog_the_adventurer/scene.gltf',
                   collider='box',
                   scale=6, 
@@ -206,7 +251,8 @@ gatekeeper = Entity(model='assets/npc_character/scene.gltf',
 
 
 
-
+def intro_disappear():
+    intro_guy.disable()
 
 # Coins
 coin1 = Entity(model='assets/lowpoly_gold_coin/scene.gltf', 
@@ -223,6 +269,12 @@ coin3 = Entity(model='assets/lowpoly_gold_coin/scene.gltf',
               color=color.yellow, 
               position=(-8,0,-22),
               collider='box')
+
+coin4 = Entity(model='assets/lowpoly_gold_coin/scene.gltf', 
+              color=color.yellow, 
+              position=(-8,0,-22),
+              collider='box')
+
 
 # Introduction NPC Dialog
 intro_variables = Empty(
@@ -258,12 +310,80 @@ Good luck out there.
         Fodder
 ''')
 
+# When you meet the intro NPC (revealed to be the Overseer) after opening the gate
+overseer_variables = Empty(
+    closed_good = 0,
+    closed_bad = 0
+)
+
+overseer_conversation = Conversation(variables_object=overseer_variables, enabled=False)
+
+overseer_convo1 = dedent('''
+Fodder
+Hello again...
+    * Aren't you the guy from the start?
+        Yes, I am. But, I'm not just some "guy". I'm the Overseer of The Depths.
+            * What?
+                I'm tasked with monitoring every depth dweller who attempts to leave this place.
+                    * Why?
+                        Why, you ask? After we first met, you assumed that gathering 50 gold coins was the ONLY condition for leaving this place.
+                        However, anyone can accomplish this, and there's a high chance that letting out the wrong person could cause harm to the citizens.
+                        So, we decided to monitor you depth dwellers, not only to see you gather 50 coins, but to also see your character, especially how you treat others.
+                        For example, if someone were to gather 50 gold coins, but they consistently harmed others during their stay in The Depths,
+                        then I will deny access to the exit as they will cause harm to others outside of The Depths.
+                        With that being said, I watched you treat others with respect and kindess, for the most part.
+                        You helped that old man retrieve his cube and you kept your word by splitting the treasure with the explorer.
+                        So, I permit you to leave this labyrinth and have a second chance at living your life out in the world.
+                            * Guess it was a good choice to split that money...
+                                Indeed. Congratulations and have a nice life out there...
+                                    * --- finish the game --- (closed_good += 1)
+                                        Fodder
+''')
+overseer_convo2 = dedent('''
+Fodder
+Hello again...
+    * Aren't you the guy from the start?
+        Yes, I am. But, I'm not just some "guy". I'm the Overseer of The Depths.
+            * What?
+                I'm tasked with monitoring every depth dweller who attempts to leave this place.
+                    * Why?
+                        Why, you ask? After we first met, you assumed that gathering 50 gold coins was the ONLY condition for leaving this place.
+                        However, anyone can accomplish this, and there's a high chance that letting out the wrong person could cause harm to the citizens.
+                        So, we decided to monitor you depth dwellers, not only to see you gather 50 coins, but to also see your character, especially how you treat others.
+                        For example, if someone were to gather 50 gold coins, but they consistently harmed others during their stay in The Depths,
+                        then I will deny access to the exit as they will cause harm to others outside of The Depths.
+                        With that being said, I watched you betray and backstab others.
+                        Although you helped that old man retrieve his cube, the explorer trusted you, yet you decided to keep the treasure for yourself and dishonour your agreement with him.
+                        So, I deny you permission to leave this labyrinth and you will never have a second chance at leaving this place.
+                            * What??!! So what am I supposed to do??
+                                Spend the rest of your days here in this labyrinth, rotting away...
+                                    * --- finish the game --- (closed_bad += 1)
+                                        Fodder
+''')
+
+
+# Good ending screen
+good_ending_screen = Button(text="Good Ending: You passed the Overseer's test and escaped the labyrinth...", color=color.dark_gray, scale=100, enabled=False)
+good_ending_audio = Audio('sounds/HOME - Resonance.mp3', loop=False, autoplay=False, volume=0.2)
+
+def good_ending():
+    good_ending_screen.enable()
+    good_ending_audio.play()
+
+# Bad ending screen
+bad_ending_screen = Button(text="Bad Ending: You failed the Overseer's test and forever stuck in the labyrinth...", color=color.dark_gray, scale=100, enabled=False)
+bad_ending_audio = Audio('sounds/matt maltese.mp3', loop=False, autoplay=False, volume=0.2)
+
+def bad_ending():
+    bad_ending_screen.enable()
+    bad_ending_audio.play()
+
 # Cube Quest Dialog
 cube_variables = Empty(
     mission_solved = 0, 
     closed = 0,
     haggled = 0,
-
+    
 )
 
 
@@ -278,14 +398,12 @@ Hey you! I need a favour!
                 That doesn't matter! What matters is that you get my cube back!
                     * Alright, where is it and what does it look like? (mission_solved += 1)
                         It's an intricate cube with heart icons on it and you can find it in the room directly to your right.
-                            * Alright... I'll go get it for you. (closed += 1)
-                                Thanks.
                             * Directly to my right?? If it's so close then why don't you get it yourself?
-                                That's besides the point rookie! Now go find it and I'll reward you with 5 gold coins.
+                                That's besides the point rookie! Now go find it and I'll reward you with 10 gold coins.
                                     * Alright. (closed += 1)
                                         Thanks.
                                     * "5" gold coins? I feel like I should be rewarded with much more, don't you think? (haggled += 1)
-                                        You greedy little cow... Fine, 10 gold coins it is...
+                                        You greedy little cow... Fine, 15 gold coins it is...
                                             * That's better... (closed += 1)
                                                 Wow
 
@@ -322,7 +440,8 @@ explorer_variables = Empty(
     mission_solved = 0, 
     closed = 0,
     shopkeeper_open = 0,
-    key_route = 0
+    key_route = 0,
+    money_split = 0
 )
 
 explorer_conversation = Conversation(variables_object=explorer_variables, enabled=False)
@@ -348,16 +467,18 @@ Greetings! I haven't seen you around before. You must be new here. It's unfortun
                                                                 Alright, so unbenkownst to everyone else, I actually found the location of the vault, but opening it is the tricky part.
                                                                     * Let me guess, there's a key... (mission_solved += 1)
                                                                         There's a ke-.. Yeah, there is... But, the creator of the vault actually made two keys and scattered them across the labyrinth. I haven't been able to find them, but you, being all adventurous and determined, could definitely find it.
-                                                                            And also, if you're the lazy type, you can also buy dynamite as an alternative to opening that vault.
-                                                                                So, the choice is yours. Do you want to find the two keys or buy dynamite for opening the vault?
-                                                                                    * I'll buy dynamite. (shopkeeper_open += 1)
-                                                                                        Alright. You'll have to buy it from the shopkeeper robot. He's pretty easy to spot as he's painted red and accompanied with a merchant cart.
-                                                                                            * *leave* (closed += 1)
-                                                                                                Fodder
-                                                                                    * I'll find the two keys. (key_route += 1)
-                                                                                        Alright. Good luck on finding them...
-                                                                                            * *leave* (closed += 1)
-                                                                                                Fodder
+                                                                        And also, if you're the lazy type, you can also buy dynamite as an alternative to opening that vault.
+                                                                        So, the choice is yours. Do you want to find the two keys or buy dynamite for opening the vault?
+                                                                            * I'll buy dynamite. (shopkeeper_open += 1)
+                                                                                Alright. You'll have to buy it from the shopkeeper robot. He's pretty easy to spot as he's painted red and accompanied with a merchant cart.
+                                                                                And also, I painted the vault door red so you can spot it easily
+                                                                                    * *leave* (closed += 1)
+                                                                                        Fodder
+                                                                            * I'll find the two keys. (key_route += 1)
+                                                                                Alright. Good luck on finding them...
+                                                                                And also, I painted the vault door red so you can spot it easily
+                                                                                    * *leave* (closed += 1)
+                                                                                        Fodder
                                                                                         
                                                                 
     * *leave* (closed += 1)
@@ -369,6 +490,17 @@ Fodder
 Remember to tell me once you've successfully found the gold so we can split it evenly!
     * *leave* (closed += 1)
         Fodder
+''')
+
+explorer_convo3 = dedent('''
+Fodder
+Great to see you again!
+    * I found the treasure. It amounts to 40 gold coins.
+        Fantastic! Thanks for keeping up your end of the deal. It would've been easy to just bail on me...
+            * *split the money* (money_split += 1)
+                Here's your half of the money, 20 gold coins, and that concludes our business together.
+                    I wish you the best of luck on your quest...
+                        * *leave* (closed += 1)
 ''')
 
 # Shopkeeper Dialog
@@ -425,8 +557,8 @@ Good luck out there...
 ''')
 # 
 gate_variables = Empty(
-    mission_solved = 0, # 0 = not started, 1 = ongoing, 2 = enough money to open gate
     closed = 0,
+    gate_open = 0
 )
 
 
@@ -445,25 +577,30 @@ Fodder
 
 gate_convo2 = dedent('''
 Fodder
-Talk to me once you've gathered 50 coins and I'll open the gate for you.
-    * *leave* (closed += 1)
-        Fodder
-''')
-gate_convo3 = dedent('''
-Fodder
 ...
     * I have enough money.
         It seems you do. Congratulations, it's been a while since someone's accomplished this feat.
             * ...
                 As promised, I'll open the gate now...
-                    * Finally...
+                    * Finally... (gate_open += 1)
                         Good luck...
                             * *leave* (closed += 1)
                                 Fodder
 ''')
+
+gate_convo3 = dedent('''
+Fodder
+...
+    * *leave* (closed += 1)
+        Fodder
+''') 
 # 
 def cube_clicked():
     quest_cube.disable()
+    player.disable()
+    cube_item_popup.enable()
+    cube_item_popup.start_conversation(cube_item_dialog)
+
     cube_variables.mission_solved += 1
 
 quest_cube.on_click = cube_clicked
@@ -484,6 +621,7 @@ def update():
         player.enable()
         intro_conversation.disable()
         wall1.collision = False
+        invoke(intro_disappear, delay=15)
         intro_variables.closed -= 1
 
 # Cube NPC
@@ -512,6 +650,12 @@ def update():
             cube_variables.haggled += 1
             cube_variables.mission_solved += 1
 
+    # Cube Item dialog closer
+    if cube_item_variables.closed == 1:
+        player.enable()
+        cube_item_popup.disable()
+        cube_item_variables.closed -= 1
+
 # Explorer NPC
     # Explorer dialog closer
     if explorer_variables.closed == 1:
@@ -528,6 +672,8 @@ def update():
     if explorer_variables.key_route == 1:
         key1.enable()
         key2.enable()
+
+    # If the player returns with the money
 # Vault key popup closer
     if key_variables.closed == 1:
         player.enable()
@@ -563,6 +709,24 @@ def update():
         player.enable()
         gate_conversation.disable()
         gate_variables.closed -= 1
+
+    # Gate Opener
+    if gate_variables.gate_open == 1:
+        gate1.animate_position(gate1.position+(gate1.right)*1.1, duration=6, curve=curve.linear)
+        gate2.animate_position(gate2.position+(gate2.left)*1.1, duration=6, curve=curve.linear)
+        gate_variables.gate_open += 1
+
+# Overseer NPC
+    # Endings
+    if overseer_variables.closed_good == 1:
+        overseer_conversation.disable()
+        good_ending()
+        overseer_variables.closed_good -= 1
+    if overseer_variables.closed_bad == 1:
+        overseer_conversation.disable()
+        bad_ending()
+        overseer_variables.closed_bad -= 1
+
 # Blackout and explosion variables
 black_screen = Button(color=color.dark_gray, scale=100, enabled=False)
 explosion_audio = Audio('sounds/Explosion.mp3', loop=False, autoplay=False, volume=0.5)
@@ -645,7 +809,11 @@ def input(key):
                 explorer_conversation.enable()
                 explorer_conversation.start_conversation(explorer_convo2)
 
-
+            # If the player retrieved the treasure
+            if explorer_variables.mission_solved == 2:
+                player.disable()
+                explorer_conversation.enable()
+                explorer_conversation.start_conversation(explorer_convo3)
 
 # Shopkeeper NPC
     if shopkeeper.hovered == True:
@@ -681,17 +849,38 @@ def input(key):
 # Gatekeeper NPC
     if gatekeeper.hovered == True:
         if key =='left mouse down':
-            # If the player hasn't talked to the gatekeeper yet
-            if gate_variables.mission_solved == 0:
-                player.disable()
-                gate_conversation.enable()
-                gate_conversation.start_conversation(gate_convo1)
-
+            if gate_variables.gate_open == 0:
+                # If the player doesn't have enough money
+                if coins < 50:
+                    player.disable()
+                    gate_conversation.enable()
+                    gate_conversation.start_conversation(gate_convo1)
             # If the player has gathered enough money
-            if gate_variables.mission_solved == 1:
                 if coins >= 50:
                     player.disable()
+                    gate_conversation.enable()
+                    gate_conversation.start_conversation(gate_convo2)
 
+            if gate_variables.gate_open == 2:
+                player.disable()
+                gate_conversation.enable()
+                gate_conversation.start_conversation(gate_convo3)
+
+# Overseer NPC
+    if overseer.hovered == True:
+        if key =='left mouse down':
+            # Bad ending, money was not split
+            if explorer_variables.money_split == 0:
+                player.disable()
+                overseer_conversation.enable()
+                overseer_conversation.start_conversation(overseer_convo2)
+            
+            # Good ending, money was split
+            if explorer_variables.money_split == 1:
+                player.disable()
+                overseer_conversation.enable()
+                overseer_conversation.start_conversation(overseer_convo1)        
+            
 # Vault Door
 
     if vault_door.hovered == True:
@@ -705,15 +894,17 @@ def input(key):
 # Treasure chest
     if treasure_chest.hovered == True:
         if key == 'left mouse down':
-                player.disable()
-                chest_popup.enable()
-                chest_popup.start_conversation(chest_dialog)
+            explorer_variables.mission_solved += 1
+            player.disable()
+            chest_popup.enable()
+            chest_popup.start_conversation(chest_dialog)
+                
 
 # Coin
     if coin1.hovered == True:
         if key == 'left mouse down':
             coin_audio.play()
-            coins += 15
+            coins += 1
             coins_ui.text = str(coins)
             coin1.disable()
 
@@ -727,6 +918,13 @@ def input(key):
 
 
     if coin3.hovered == True:
+        if key == 'left mouse down':
+            coin_audio.play()            
+            coins += 1
+            coins_ui.text = str(coins)
+            coin3.disable()
+
+    if coin4.hovered == True:
         if key == 'left mouse down':
             coin_audio.play()            
             coins += 1

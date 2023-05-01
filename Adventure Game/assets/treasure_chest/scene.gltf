@@ -1,0 +1,403 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1040,
+      "max": [
+        129.1001739501953,
+        170.44482421875,
+        178.55250549316406
+      ],
+      "min": [
+        -129.1001739501953,
+        -0.5831241607666016,
+        -178.55250549316406
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 12480,
+      "componentType": 5126,
+      "count": 1040,
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1040,
+      "max": [
+        0.9598246812820435,
+        0.9859810471534729
+      ],
+      "min": [
+        0.007779541425406933,
+        0.004607260227203369
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 1926,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 24960,
+      "componentType": 5126,
+      "count": 288,
+      "max": [
+        216.09820556640625,
+        146.3229217529297,
+        22.866260528564453
+      ],
+      "min": [
+        -42.4915771484375,
+        -1.6228392124176025,
+        -256.0312194824219
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 28416,
+      "componentType": 5126,
+      "count": 288,
+      "max": [
+        0.9443197250366211,
+        0.9998767375946045,
+        0.9912477731704712
+      ],
+      "min": [
+        -0.9443199038505554,
+        -0.9998767375946045,
+        -0.9912477731704712
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 8320,
+      "componentType": 5126,
+      "count": 288,
+      "max": [
+        0.7018128633499146,
+        0.7377499938011169
+      ],
+      "min": [
+        0.21269507706165314,
+        0.075685054063797
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 7704,
+      "componentType": 5125,
+      "count": 480,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 31872,
+      "componentType": 5126,
+      "count": 390,
+      "max": [
+        252.37452697753906,
+        117.96543884277344,
+        178.55242919921875
+      ],
+      "min": [
+        -0.12874603271484375,
+        -21.120262145996094,
+        -178.55242919921875
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 36552,
+      "componentType": 5126,
+      "count": 390,
+      "max": [
+        0.9999988079071045,
+        0.9999987483024597,
+        1.0
+      ],
+      "min": [
+        -0.9999988079071045,
+        -0.9999988079071045,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 10624,
+      "componentType": 5126,
+      "count": 390,
+      "max": [
+        0.9933348298072815,
+        0.9935925602912903
+      ],
+      "min": [
+        0.0030309949070215225,
+        0.0028119604103267193
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 9624,
+      "componentType": 5125,
+      "count": 828,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "brainchildpl (https://sketchfab.com/brainchildpl)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/treasure-chest-3d-game-asset-mobile-game-5c820d1e9656471c9774070047df718f",
+      "title": "Treasure Chest - 3d Game asset (mobile game)"
+    },
+    "generator": "Sketchfab-12.67.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 12936,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 13744,
+      "byteOffset": 12936,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 41232,
+      "byteOffset": 26680,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 67912,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Material_baseColor.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Material",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.28220274390243905,
+        "roughnessFactor": 0.3946265243902439
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Chest_bottom_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Coins_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 5,
+            "POSITION": 4,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Chest_top_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 9,
+            "POSITION": 8,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.6441177725791931,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.430228763375381e-16,
+        -0.6441177725791931,
+        0.0,
+        0.0,
+        0.6441177725791931,
+        1.430228763375381e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "a9f9ee19fea54bfaad0e0f097fe5f41c.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        5,
+        7
+      ],
+      "name": "Chest_bottom"
+    },
+    {
+      "mesh": 0,
+      "name": "Chest_bottom_Material_0"
+    },
+    {
+      "children": [
+        6
+      ],
+      "name": "Coins"
+    },
+    {
+      "mesh": 1,
+      "name": "Coins_Material_0"
+    },
+    {
+      "children": [
+        8
+      ],
+      "matrix": [
+        0.4780782907520345,
+        0.8783171572400981,
+        0.0,
+        0.0,
+        -0.8783171572400981,
+        0.4780782907520345,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        -119.91560363769531,
+        159.01849365234375,
+        2.3036218408378772e-05,
+        1.0
+      ],
+      "name": "Chest_top"
+    },
+    {
+      "mesh": 2,
+      "name": "Chest_top_Material_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    }
+  ]
+}
