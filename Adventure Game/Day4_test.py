@@ -86,21 +86,7 @@ ground = Entity(model='cube',
                scale=(10,1,10), 
                texture_scale=(5,5)
                )
-# Treasure chest dialog
-chest_variables = Empty(
-    closed = 0
-)
 
-chest_popup = Conversation(variables_object=chest_variables, enabled=False)
-
-chest_dialog = dedent('''
-Fodder
-Wow, that's a lot of gold coins... I count about 40...
-    If I don't tell the explorer and keep the money for myself, I'll have the full amount...
-        Or, I could tell the explorer and split the money evenly and I'll end up with 20 gold coins.
-            * *leave* (closed += 1)
-                Fodder
-''')
 
 # The two quest keys and their functions
 # Credits: https://skfb.ly/6WP69
@@ -133,18 +119,39 @@ Fodder
 ''')
 
 # Quest Items
+
+#   Cube
 quest_cube = Entity(model='assets/cube_companion/scene.gltf', 
                 position=(30,1,0),
                 collider='box',
                 scale=.5,
                 enabled=False)
 
+
+#   Treasure Chest
 treasure_chest = Entity(model='assets/treasure_chest_model/scene.gltf',
                         position=(-38,0,-9), 
                         scale=.2,
                         collider='mesh',
                         rotation=(0,-90,0)
                         )
+
+#   Treasure chest dialog
+chest_variables = Empty(
+    closed = 0
+)
+
+chest_popup = Conversation(variables_object=chest_variables, enabled=False)
+
+chest_dialog = dedent('''
+Fodder
+Wow, that's a lot of gold coins... I count about 40...
+    If I don't tell the explorer and keep the money for myself, I'll have the full amount...
+        Or, I could tell the explorer and split the money evenly and I'll end up with 20 gold coins.
+            * *leave* (closed += 1)
+                Fodder
+''')
+
 # UI
 coins = 0
 coins_ui = Text(text = '0', 
@@ -461,12 +468,14 @@ Fodder
                             * *leave* (closed += 1)
                                 Fodder
 ''')
-# 
+
+# Cube functions
 def cube_clicked():
     quest_cube.disable()
     cube_variables.mission_solved += 1
 
 quest_cube.on_click = cube_clicked
+
 # Prefabs
 player = FirstPersonController(position=(0,5,35), rotation=(0,180,0))
 ec = EditorCamera()
