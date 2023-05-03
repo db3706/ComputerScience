@@ -88,6 +88,9 @@ ground = Entity(model='cube',
                scale=(10,1,30), 
                texture_scale=(5,5)
                )
+<<<<<<< HEAD
+
+=======
 
 wall4 = Entity(model='cube',
                texture='brick',
@@ -119,6 +122,7 @@ Or, I could tell the explorer and split the money evenly and I'll end up with 20
     * *leave* (closed += 1)
         Fodder
 ''')
+>>>>>>> f45906a25ff43b5fa59aeddc8930e0de4b98ba89
 
 
 # The two quest keys and their functions
@@ -152,12 +156,19 @@ Fodder
 ''')
 
 # Quest Items
+
+#   Cube
 quest_cube = Entity(model='assets/cube_companion/scene.gltf', 
                 position=(30,1,0),
                 collider='box',
                 scale=.5,
                 enabled=False)
 
+<<<<<<< HEAD
+
+#   Treasure Chest
+treasure_chest = Entity(model='assets/treasure_chest_model/scene.gltf',
+=======
 # Cube item dialog
 cube_item_variables = Empty(
     closed = 0
@@ -173,12 +184,32 @@ cube_item_dialog = dedent('''
 
 # Credits: https://skfb.ly/6WOHL
 treasure_chest = Entity(model='assets/treasure_chest/scene.gltf',
+>>>>>>> f45906a25ff43b5fa59aeddc8930e0de4b98ba89
                         position=(-38,0,-9), 
                         scale=0.01,
                         collider='mesh',
                         rotation=(0,0,0)
                         )
 
+<<<<<<< HEAD
+#   Treasure chest dialog
+chest_variables = Empty(
+    closed = 0
+)
+
+chest_popup = Conversation(variables_object=chest_variables, enabled=False)
+
+chest_dialog = dedent('''
+Fodder
+Wow, that's a lot of gold coins... I count about 40...
+    If I don't tell the explorer and keep the money for myself, I'll have the full amount...
+        Or, I could tell the explorer and split the money evenly and I'll end up with 20 gold coins.
+            * *leave* (closed += 1)
+                Fodder
+''')
+
+=======
+>>>>>>> f45906a25ff43b5fa59aeddc8930e0de4b98ba89
 # UI
 coins = 0
 coins_ui = Text(text = '0', 
@@ -593,6 +624,9 @@ Fodder
                                 Fodder
 ''')
 
+<<<<<<< HEAD
+# Cube functions
+=======
 gate_convo3 = dedent('''
 Fodder
 ...
@@ -600,6 +634,7 @@ Fodder
         Fodder
 ''') 
 # 
+>>>>>>> f45906a25ff43b5fa59aeddc8930e0de4b98ba89
 def cube_clicked():
     quest_cube.disable()
     player.disable()
@@ -609,6 +644,7 @@ def cube_clicked():
     cube_variables.mission_solved += 1
 
 quest_cube.on_click = cube_clicked
+
 # Prefabs
 player = FirstPersonController(position=(0,5,35), rotation=(0,180,0))
 ec = EditorCamera()
