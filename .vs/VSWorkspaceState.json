@@ -1,14 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Adventure Game",
-    "\\Adventure Game\\assets",
-    "\\Adventure Game\\assets\\cube_companion",
-    "\\Adventure Game\\assets\\explorer",
-    "\\Adventure Game\\assets\\npc_character",
-    "\\Adventure Game\\assets\\npc_character\\textures",
-    "\\Adventure Game\\sounds"
+    "\\Assignments"
   ],
-  "SelectedNode": "\\Adventure Game\\Day4_test.py",
+  "SelectedNode": "\\Assignments\\drawing_test.py",
   "PreviewInSolutionExplorer": false
 }
