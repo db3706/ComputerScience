@@ -1,11 +1,17 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< HEAD
+    "\\Assignments"
+  ],
+  "SelectedNode": "\\Assignments\\drawing_test.py",
+=======
     "\\Assignments",
     "\\Assignments\\Class Inheritance",
     "\\In class exercises",
     "\\References"
   ],
   "SelectedNode": "\\Assignments\\Drawing.py",
+>>>>>>> 912faa29376a2ad4fa984eb25618c59500b9261f
   "PreviewInSolutionExplorer": false
 }
